@@ -1,0 +1,85 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/mis-rentas" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles de moto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detalle-owner-content" *ngIf="renta">
+
+  <!-- Imagen con badge En curso -->
+  <div class="moto-img-grande">
+    <img [src]="renta.moto.imagen || 'assets/placeholder-moto.png'" [alt]="renta.moto.nombre" />
+    <span class="badge-encurso">En curso</span>
+  </div>
+
+  <!-- Nombre y precio -->
+  <div class="moto-header">
+    <div class="moto-titulo">
+      <h1>{{ renta.moto.nombre }}</h1>
+      <span class="precio">{{ renta.moto.precio }}/hora</span>
+    </div>
+
+    <!-- Fechas -->
+    <div class="info-row">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>{{ renta.fechaInicio }} – {{ renta.fechaFin }} ({{ renta.dias }} días)</span>
+    </div>
+
+    <!-- Ubicación -->
+    <div class="info-row">
+      <ion-icon name="location-outline"></ion-icon>
+      <span>{{ renta.ubicacion }}</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Método de pago -->
+  <div class="seccion">
+    <h2 class="seccion-titulo">Método de pago</h2>
+    <div class="pago-card">
+      <div class="pago-icono">
+        <ion-icon name="card-outline"></ion-icon>
+      </div>
+      <div class="pago-info">
+        <span class="pago-numero">{{ renta.pago.numero }}</span>
+        <span class="pago-nombre">{{ renta.pago.titular }}</span>
+      </div>
+      <ion-icon name="checkmark-circle" class="pago-check"></ion-icon>
+      <ion-icon name="chevron-forward-outline" class="pago-arrow"></ion-icon>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Resumen total -->
+  <div class="seccion">
+    <h2 class="seccion-titulo">Resumen total</h2>
+
+    <div class="resumen-row">
+      <span class="resumen-label">Renta ({{ renta.dias }} días)</span>
+      <span class="resumen-valor">{{ renta.resumen.renta | currency:'MXN':'symbol':'1.2-2' }}</span>
+    </div>
+
+    <div class="resumen-row">
+      <span class="resumen-label">Seguro Básico</span>
+      <span class="resumen-valor">{{ renta.resumen.seguro | currency:'MXN':'symbol':'1.2-2' }}</span>
+    </div>
+
+    <div class="resumen-row total-row">
+      <span class="resumen-label total-label">Total</span>
+      <span class="resumen-valor total-valor">{{ renta.resumen.total | currency:'MXN':'symbol':'1.2-2' }}</span>
+    </div>
+  </div>
+
+</ion-content>
+
+<!-- Botón cancelar fijo abajo -->
+<div class="footer-btn" *ngIf="renta">
+  <ion-button expand="block" class="btn-cancelar" (click)="cancelarRenta()">
+    Cancelar
+  </ion-button>
+</div>

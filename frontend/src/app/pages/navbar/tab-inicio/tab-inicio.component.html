@@ -1,3 +1,79 @@
-<p>
-  tab-inicio works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <div class="header-content">
+      <div class="greeting">
+        <span class="welcome">Bienvenido 👋</span>
+        <span class="name">Angel Díaz</span>
+      </div>
+      <div class="avatar">AD</div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="inicio-content">
+
+  <!-- Buscador -->
+  <div class="search-bar" routerLink="/buscador-motos">
+    <ion-icon name="search-outline"></ion-icon>
+    <span>¿A dónde vas? Busca tu moto ideal</span>
+  </div>
+
+  <!-- Motos disponibles -->
+  <div class="section-header">
+    <span class="section-title">Motos disponibles</span>
+    <span class="ver-todas" routerLink="/buscador-motos">Ver todas</span>
+  </div>
+
+  <div class="motos-scroll">
+    <div
+      class="moto-card"
+      *ngFor="let moto of motos"
+      (click)="verDetalle(moto.id)"
+    >
+      <div class="moto-img">
+        <!-- Badge ahora a la DERECHA -->
+        <ion-badge class="badge-disponible">Disponible</ion-badge>
+        <img src="assets/logo-moki.png" alt="Moto" />
+      </div>
+
+      <div class="moto-info">
+        <div class="moto-nombre-precio">
+          <span class="moto-nombre">{{ moto.nombre }}</span>
+          <span class="moto-precio">{{ moto.precio }}/hora</span>
+        </div>
+        <span class="moto-desc">{{ moto.descripcion }}</span>
+
+        <ion-button
+          expand="block"
+          class="btn-rentar"
+          (click)="verDetalle(moto.id); $event.stopPropagation()"
+        >
+          Rentar
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner genera ingresos -->
+  <div class="banner-ingresos">
+    <div class="banner-text">
+      <span class="banner-title">Genera ingresos extra</span>
+      <span class="banner-subtitle">
+        Comparte tu moto de forma segura y empieza a ganar dinero fácilmente.
+      </span>
+    </div>
+    <ion-button class="btn-renta-ahora">Renta ahora</ion-button>
+  </div>
+
+  <!-- Banner casco y mochila -->
+  <div class="banner-casco">
+    
+    <div class="banner-casco-text">
+      <span class="banner-casco-title">¡Lleva casco y mochila incluidos!</span>
+      <span class="banner-casco-subtitle">
+        En todas tus rentas por día o semanas en Durango.
+      </span>
+    </div>
+  </div>
+
+</ion-content>

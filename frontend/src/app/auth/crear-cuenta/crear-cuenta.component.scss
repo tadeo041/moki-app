@@ -1,0 +1,180 @@
+:host {
+  --background: #ffffff;
+}
+
+.crear-content {
+  --background: #ffffff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 24px 40px;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+
+  ion-icon {
+    font-size: 22px;
+    color: #001534;
+  }
+}
+
+.header-area {
+  margin-bottom: 28px;
+
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #001534;
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: #001534;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #001534;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 14px;
+  height: 50px;
+  background: #ffffff;
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: #001534;
+  }
+
+  .input-icon {
+    font-size: 18px;
+    color: #001534;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .toggle-icon {
+    font-size: 18px;
+    color: #001534;
+    margin-left: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+}
+
+.field-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #001534;
+  background: transparent;
+  font-family: inherit;
+
+  &::placeholder {
+    color: #d1d5db;
+  }
+}
+
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.terms-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: #001534;
+  cursor: pointer;
+}
+
+.terms-label {
+  font-size: 12px;
+  color: #001534;
+  line-height: 1.5;
+  cursor: pointer;
+
+  .link {
+    color: #001534;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
+
+
+.action-area {
+  margin-top: 28px;
+}
+
+.btn-crear {
+  --background: #001534;
+  --background-activated: #001534;
+  --background-hover: #001534;
+  --background-disabled: #001534;
+  --color: #ffffff;
+  --border-radius: 999px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  --opacity: 1;
+  opacity: 1 !important;
+  font-size: 15px;
+  font-weight: 600;
+  height: 54px;
+}
+
+.btn-crear::part(native) {
+  border-radius: 999px;
+}
+.btn-crear {
+  --background: #001534;
+  --background-activated: #001534;
+  --background-hover: #001534;
+  --color: #ffffff;
+  --border-radius: 16px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  --opacity: 1;        
+  opacity: 1 !important;
+  font-size: 15px;
+  font-weight: 600;
+  height: 54px;
+}

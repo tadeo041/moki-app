@@ -1,3 +1,48 @@
-<p>
-  tab-mis-rentas works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="section-title">Mis rentas de moto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="rentas-content">
+
+  <div
+    class="renta-card"
+    *ngFor="let renta of rentas"
+    (click)="verDetalle(renta.id)"
+  >
+
+    <div class="renta-img">
+      <ion-badge
+        [class]="renta.estado === 'En curso' ? 'badge-curso' : 'badge-camino'"
+      >
+        {{ renta.estado }}
+      </ion-badge>
+
+      <img
+        [src]="renta.imagen"
+        [alt]="renta.nombre"
+        class="moto-img"
+      />
+    </div>
+
+    <div class="renta-info">
+      <div class="renta-row">
+        <span class="renta-nombre">{{ renta.nombre }}</span>
+        <span class="renta-precio">{{ renta.precio }}/hora</span>
+      </div>
+      <span class="renta-dias">
+        Días restantes: {{ renta.dias }} días | Entrega {{ renta.entrega }}
+      </span>
+      <ion-button
+        expand="block"
+        class="btn-detalles"
+        (click)="verDetalle(renta.id); $event.stopPropagation()"
+      >
+        Ver detalles
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

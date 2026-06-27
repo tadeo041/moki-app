@@ -1,3 +1,86 @@
-<p>
-  crear-cuenta works!
-</p>
+<ion-content class="ion-no-padding crear-content">
+  <div class="wrapper">
+
+    <div class="back-btn" (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </div>
+
+    <div class="header-area">
+      <h1 class="title">Crear una cuenta</h1>
+      <p class="subtitle">Escribe tu correo electrónico y tu contraseña para poder crear una cuenta</p>
+    </div>
+
+    <div class="form-area">
+
+      <div class="field-group">
+        <label class="field-label">Nombre Completo</label>
+        <div class="input-wrapper">
+          <ion-icon name="person-outline" class="input-icon"></ion-icon>
+          <input
+            type="text"
+            [(ngModel)]="nombre"
+            class="field-input"
+            autocomplete="name"
+          />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Correo Electrónico</label>
+        <div class="input-wrapper">
+          <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            class="field-input"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Contraseña</label>
+        <div class="input-wrapper">
+          <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            class="field-input"
+            autocomplete="new-password"
+          />
+          <ion-icon
+            [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+            class="toggle-icon"
+            (click)="togglePassword()"
+          ></ion-icon>
+        </div>
+      </div>
+
+      <div class="terms-row">
+        <input
+          type="checkbox"
+          id="terms"
+          [(ngModel)]="aceptaTerminos"
+          class="terms-checkbox"
+        />
+        <label for="terms" class="terms-label">
+          Aceptar
+          <span class="link">Términos y Condiciones</span> y
+          <span class="link">Política de Privacidad</span>
+        </label>
+      </div>
+
+    </div>
+
+   
+    <div class="action-area">
+      <ion-button
+        expand="block"
+        class="btn-crear"
+        (click)="crearCuenta()">
+        Crear cuenta
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

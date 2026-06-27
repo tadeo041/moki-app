@@ -1,0 +1,27 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio" text="Regresar al inicio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="exito-content">
+
+  <div class="exito-container">
+    <div class="check-circle">
+      <ion-icon name="checkmark-circle"></ion-icon>
+    </div>
+    <h2 class="exito-titulo">Proceso completado con éxito</h2>
+    <p class="exito-desc">
+      ¡Tu renta de moto fue un éxito! Todo está listo para que disfrutes tu experiencia sobre ruedas.
+    </p>
+  </div>
+
+</ion-content>
+
+<div class="footer-btn">
+  <ion-button expand="block" class="btn-siguiente" (click)="irAlInicio()">
+    Siguiente
+  </ion-button>
+</div>

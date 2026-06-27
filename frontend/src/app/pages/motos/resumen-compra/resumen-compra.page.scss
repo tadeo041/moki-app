@@ -1,0 +1,214 @@
+ion-toolbar {
+  --background: #ffffff;
+  --padding-start: 8px;
+}
+
+ion-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #001534;
+}
+
+.resumen-content {
+  --background: #f9fafb;
+  --padding-bottom: 110px;
+}
+
+.moto-img-placeholder {
+  position: relative;
+  height: 180px;
+  background: #f3f4f6;
+  overflow: hidden;
+
+  .badge-disponible {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    z-index: 1;
+  }
+}
+
+.moto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #ffffff;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #001534;
+    margin: 0;
+  }
+
+  .precio {
+    font-size: 15px;
+    font-weight: 700;
+    color: #001534;
+  }
+}
+
+.seccion {
+  background: #ffffff;
+  margin-top: 8px;
+  padding: 16px 20px;
+}
+
+.seccion-titulo {
+  font-size: 14px;
+  font-weight: 700;
+  color: #001534;
+  margin: 0 0 14px;
+}
+
+.detalle-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.detalle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  ion-icon {
+    font-size: 16px;
+    color: #001534;
+  }
+}
+
+.detalle-texto {
+  font-size: 13px;
+  color: #374151;
+}
+
+.pago-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pago-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  ion-icon {
+    font-size: 20px;
+    color: #001534;
+  }
+}
+
+.pago-datos {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .pago-tarjeta {
+    font-size: 13px;
+    font-weight: 600;
+    color: #001534;
+  }
+
+  .pago-titular {
+    font-size: 12px;
+    color: #001534;
+  }
+}
+
+.info-icon {
+  font-size: 20px;
+  color: #9ca3af;
+}
+
+.resumen-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+
+  .resumen-label {
+    font-size: 13px;
+    color: #001534;
+  }
+
+  .resumen-valor {
+    font-size: 13px;
+    font-weight: 600;
+    color: #001534;
+  }
+
+  &.total {
+    .resumen-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: #001534;
+    }
+
+    .resumen-valor {
+      font-size: 17px;
+      font-weight: 700;
+      color: #001534;
+    }
+  }
+}
+
+.resumen-divider {
+  height: 1px;
+  background: #f3f4f6;
+  margin: 6px 0;
+}
+
+.footer-btns {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 20px 28px;
+  background: #ffffff;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.btn-confirmar {
+  --background: #001534;
+  --color: #ffffff;
+  --border-radius: 16px;
+  height: 52px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn-cancelar {
+  --color: #dc2626;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+}

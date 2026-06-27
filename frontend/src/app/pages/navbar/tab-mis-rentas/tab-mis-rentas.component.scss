@@ -1,0 +1,114 @@
+ion-header.ion-no-border ion-toolbar {
+  --background: #ffffff;
+  --border-width: 0;
+  box-shadow: none;
+}
+
+.rentas-content {
+  --background: #f9fafb;
+}
+
+.renta-card {
+  background: #ffffff;
+  border-radius: 16px;
+  margin: 16px 20px 0;
+  overflow: hidden;
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+}
+
+.renta-img {
+  position: relative;
+  height: 140px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  ion-icon {
+    font-size: 48px;
+    color: #cbd5e1;
+  }
+}
+
+.badge-curso {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.badge-camino {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #fef9c3;
+  color: #854d0e;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.renta-info {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.renta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.renta-nombre {
+  font-size: 15px;
+  font-weight: 700;
+  color: #001534;
+}
+
+.renta-precio {
+  font-size: 14px;
+  font-weight: 700;
+  color: #001534;
+}
+
+.renta-dias {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.btn-detalles {
+  --background: #001534;
+  --color: #ffffff;
+  --border-radius: 10px;
+  height: 40px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}

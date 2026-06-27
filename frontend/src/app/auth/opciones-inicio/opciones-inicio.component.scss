@@ -1,0 +1,62 @@
+:host {
+  --background: #ffffff;
+}
+
+.opciones-content {
+  --background: #ffffff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 24px;
+}
+
+.logo-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 160px;
+  max-width: 60%;
+}
+
+.buttons-area {
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-iniciar {
+  --background: #001534;
+  --background-activated: #1a2e45;
+  --color: #ffffff;
+  --border-radius: 999px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  height: 56px;
+}
+
+.btn-iniciar::part(native) {
+  border-radius: 999px;
+}
+
+.btn-crear {
+  --color: #001534;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  height: 48px;
+}
+
+.btn-crear::part(native) {
+  border-radius: 999px;
+}

@@ -1,3 +1,75 @@
-<p>
-  inicio-sesion works!
-</p>
+<ion-content class="ion-no-padding login-content">
+  <div class="wrapper">
+
+    <!-- Botón volver -->
+    <div class="back-btn" (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </div>
+
+    <!-- Título -->
+    <div class="header-area">
+      <h1 class="title">Iniciando sesión</h1>
+      <p class="subtitle">Escribe tu correo electrónico y tu contraseña para poder ingresar</p>
+    </div>
+
+    <!-- Formulario -->
+    <div class="form-area">
+
+      <!-- Correo electrónico -->
+      <div class="field-group">
+        <label class="field-label">Correo Electrónico</label>
+        <div class="input-wrapper">
+          <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            placeholder=""
+            class="field-input"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+      <!-- Contraseña -->
+      <div class="field-group">
+        <label class="field-label">Contraseña</label>
+        <div class="input-wrapper">
+          <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            placeholder=""
+            class="field-input"
+            autocomplete="current-password"
+          />
+          <ion-icon
+            [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+            class="toggle-icon"
+            (click)="togglePassword()"
+          ></ion-icon>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Botón iniciar sesión -->
+    <div class="action-area">
+      <ion-button
+        expand="block"
+        class="btn-login"
+        (click)="login()">
+        Iniciar sesión
+      </ion-button>
+    </div>
+
+    <!-- Pie de página -->
+    <div class="footer-text">
+      <p>
+        Al iniciar sesión con una cuenta, aceptas los
+        <span class="link">Términos de servicio</span> y la
+        <span class="link">Política de privacidad de Moki</span>
+      </p>
+    </div>
+
+  </div>
+</ion-content>

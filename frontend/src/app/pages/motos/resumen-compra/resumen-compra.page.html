@@ -1,0 +1,89 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/proceso-renta" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Finalizar reserva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="resumen-content">
+
+ <!-- Imagen placeholder -->
+<div class="moto-img-placeholder">
+  <ion-badge class="badge-disponible">Disponible</ion-badge>
+  <img [src]="moto.imagen" alt="{{ moto.nombre }}" style="width:100%; height:100%; object-fit:cover;" />
+  
+</div>
+
+  <!-- Nombre y precio -->
+  <div class="moto-header">
+    <h2>{{ moto.nombre }}</h2>
+    <span class="precio">{{ moto.precio }}</span>
+  </div>
+
+  <!-- Detalles de reserva -->
+  <div class="seccion">
+    <div class="detalle-item">
+      <div class="detalle-icon">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </div>
+      <span class="detalle-texto">{{ fechas }}</span>
+    </div>
+
+    <div class="detalle-item">
+      <div class="detalle-icon">
+        <ion-icon name="location-outline"></ion-icon>
+      </div>
+      <span class="detalle-texto">{{ lugar }}</span>
+    </div>
+  </div>
+
+  <!-- Método de pago -->
+  <div class="seccion">
+    <h3 class="seccion-titulo">Método de pago</h3>
+    <div class="pago-item">
+      <div class="pago-icon">
+        <ion-icon name="card-outline"></ion-icon>
+      </div>
+      <div class="pago-datos">
+        <span class="pago-tarjeta">{{ tarjeta }}</span>
+        <span class="pago-titular">{{ titular }}</span>
+      </div>
+      <ion-icon name="information-circle-outline" class="info-icon"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Resumen total -->
+  <div class="seccion">
+    <h3 class="seccion-titulo">Resumen total</h3>
+
+    <div class="resumen-row">
+      <span class="resumen-label">Renta (2 días)</span>
+      <span class="resumen-valor">{{ resumen.renta }}</span>
+    </div>
+
+    <div class="resumen-row">
+      <span class="resumen-label">Seguro Básico</span>
+      <span class="resumen-valor">{{ resumen.seguro }}</span>
+    </div>
+
+    <div class="resumen-divider"></div>
+
+    <div class="resumen-row total">
+      <span class="resumen-label">Total</span>
+      <span class="resumen-valor">{{ resumen.total }}</span>
+    </div>
+  </div>
+
+</ion-content>
+
+<!-- Botones  -->
+<div class="footer-btns">
+  <ion-button expand="block" class="btn-confirmar" (click)="confirmarPago()">
+    Confirmar pago
+  </ion-button>
+  <ion-button expand="block" fill="clear" class="btn-cancelar">
+    Cancelar
+  </ion-button>
+</div>

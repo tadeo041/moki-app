@@ -1,0 +1,55 @@
+ion-toolbar { --background: #ffffff; }
+.perfil-title { font-size: 18px; font-weight: 700; color: #001534; }
+.perfil-content { --background: #f9fafb; }
+
+.perfil-header {
+  display: flex; flex-direction: column;
+  align-items: center; padding: 32px 20px 24px;
+  background: #ffffff; margin-bottom: 8px;
+}
+
+.avatar-grande {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: #001534; color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700; margin-bottom: 12px;
+}
+
+.perfil-nombre { font-size: 18px; font-weight: 700; color: #001534; }
+.perfil-email { font-size: 13px; color: #001534; margin-top: 2px; }
+
+.seccion-label {
+  font-size: 12px; font-weight: 600; color: #9ca3af;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 16px 20px 8px;
+}
+
+.menu-item {
+  display: flex; align-items: center; gap: 14px;
+  background: #ffffff; padding: 16px 20px;
+  cursor: pointer; border-bottom: 1px solid #f3f4f6;
+}
+
+.menu-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: #f3f4f6;
+  display: flex; align-items: center; justify-content: center;
+  ion-icon { font-size: 18px; color: #001534; }
+}
+
+.menu-texto { flex: 1; font-size: 15px; color: #001534; font-weight: 500; }
+.menu-arrow { font-size: 18px; color: #9ca3af; }
+
+.cerrar-sesion-area { padding: 24px 20px 8px; }
+
+.btn-cerrar {
+  --background: #fee2e2; --color: #dc2626;
+  --border-radius: 12px; height: 48px;
+  font-size: 15px; font-weight: 600;
+  --box-shadow: none;
+}
+
+.version-text {
+  text-align: center; font-size: 11px;
+  color: #9ca3af; padding-top: 8px;
+}

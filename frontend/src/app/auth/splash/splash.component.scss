@@ -1,0 +1,18 @@
+/* splash.page.scss */
+.splash-content {
+  --background: #ffffff;
+}
+
+.splash-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 100svh;
+  background: #ffffff;
+}
+
+.splash-logo {
+  width: 260px;
+  max-width: 70%;
+}

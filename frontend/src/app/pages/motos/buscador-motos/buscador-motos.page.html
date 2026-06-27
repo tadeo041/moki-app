@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Buscador de motos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="buscador-content">
+
+  <div class="search-bar">
+    <ion-icon name="search-outline"></ion-icon>
+    <input
+      type="text"
+      [(ngModel)]="busqueda"
+      placeholder="¿A dónde vas? Busca tu moto ideal"
+    />
+  </div>
+
+  <div class="motos-lista">
+    <div
+      class="moto-card"
+      *ngFor="let moto of motosFiltradas"
+      (click)="verDetalle(moto.id)"
+    >
+      
+      <div class="moto-img">
+        <img [src]="moto.imagen || 'assets/placeholder-moto.png'" [alt]="moto.nombre" />
+      </div>
+
+      <div class="moto-info">
+        <div class="moto-top">
+          <span class="moto-nombre">{{ moto.nombre }}</span>
+          <span class="moto-precio">{{ moto.precio }}/hora</span>
+        </div>
+        <span class="moto-desc">{{ moto.descripcion }}</span>
+        <ion-button expand="block" class="btn-ver" (click)="verDetalle(moto.id); $event.stopPropagation()">
+          Ver detalles
+        </ion-button>
+      </div>
+    </div>
+
+    <div class="empty" *ngIf="motosFiltradas.length === 0">
+      <p>No se encontraron motos para "{{ busqueda }}"</p>
+    </div>
+  </div>
+
+</ion-content>

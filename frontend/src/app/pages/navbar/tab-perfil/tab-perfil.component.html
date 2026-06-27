@@ -1,3 +1,35 @@
-<p>
-  tab-perfil works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="perfil-title">Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="perfil-content">
+
+  <!--datos -->
+  <div class="perfil-header">
+    <div class="avatar-grande">AD</div>
+    <span class="perfil-nombre">Angel Díaz</span>
+    <span class="perfil-email">angel&#64;gmail.com</span>
+  </div>
+
+  <!-- Gestión de pagos -->
+  <div class="seccion-label">Gestión de pagos</div>
+  <div class="menu-item" routerLink="/metodo-pago">
+    <div class="menu-icon">
+      <ion-icon name="card-outline"></ion-icon>
+    </div>
+    <span class="menu-texto">Método de pago</span>
+    <ion-icon name="chevron-forward-outline" class="menu-arrow"></ion-icon>
+  </div>
+
+  <!-- Cerrar sesión -->
+  <div class="cerrar-sesion-area">
+    <ion-button expand="block" class="btn-cerrar" (click)="cerrarSesion()">
+      Cerrar sesión
+    </ion-button>
+  </div>
+
+  <div class="version-text">Versión 1.0 • (nombre app)</div>
+
+</ion-content>

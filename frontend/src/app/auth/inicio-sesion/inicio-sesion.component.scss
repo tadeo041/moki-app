@@ -1,0 +1,153 @@
+:host {
+  --background: #ffffff;
+}
+
+.login-content {
+  --background: #ffffff;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px 24px 32px;
+  box-sizing: border-box;
+}
+
+.back-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 24px;
+
+  ion-icon {
+    font-size: 22px;
+    color: #001534;
+  }
+}
+
+.header-area {
+  margin-bottom: 32px;
+
+  .title {
+    font-size: 26px; 
+    font-weight: 700;
+    color: #001534;
+    margin: 0 0 8px;
+    line-height: 1.2;
+  }
+
+  .subtitle {
+    font-size: 15px; 
+    color: #000000;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 14px;
+  height: 50px;
+  background: #ffffff;
+  transition: border-color 0.2s;
+
+  &:focus-within {
+    border-color: #001534;
+  }
+
+  .input-icon {
+    font-size: 18px;
+    color: #9ca3af;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+
+  .toggle-icon {
+    font-size: 18px;
+    color: #9ca3af;
+    margin-left: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+}
+
+.field-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #001534;
+  background: transparent;
+  font-family: inherit;
+
+  &::placeholder {
+    color: #d1d5db;
+  }
+}
+
+
+.action-area {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-login {
+  --background: #001534;
+  --background-activated: #1a2e45;
+  --color: #ffffff;
+  --border-radius: 999px; 
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  height: 54px;
+}
+
+.btn-login::part(native) {
+  border-radius: 999px; 
+}
+
+.footer-text {
+  margin-top: auto;
+  text-align: center;
+  padding: 0 8px;
+
+  p {
+    font-size: 11px;
+    color: #9ca3af; /* gris  */
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .link {
+    color: #001534;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
