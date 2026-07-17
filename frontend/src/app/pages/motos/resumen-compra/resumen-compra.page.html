@@ -1,89 +1,103 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/proceso-renta" text=""></ion-back-button>
+      <ion-back-button defaultHref="/tabs/inicio" text=""></ion-back-button>
     </ion-buttons>
-    <ion-title>Finalizar reserva</ion-title>
+
+    <ion-title>Resumen de compra</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="resumen-content">
+<ion-content class="resumen-content" *ngIf="moto">
 
- <!-- Imagen placeholder -->
-<div class="moto-img-placeholder">
-  <ion-badge class="badge-disponible">Disponible</ion-badge>
-  <img [src]="moto.imagen" alt="{{ moto.nombre }}" style="width:100%; height:100%; object-fit:cover;" />
-  
+  <div class="moto-card">
+
+  <div class="moto-img">
+    <img [src]="moto.imageUrl" [alt]="moto.name">
+    <ion-badge class="badge-disponible">Disponible</ion-badge>
+  </div>
+
+  <div class="moto-info">
+    <div class="moto-header">
+      <h2>{{ moto.name }}</h2>
+      <span class="precio">${{ moto.pricePerHour }}/hora</span>
+    </div>
+
+    <p class="fechas-info">
+      {{ fechaInicio }} — {{ fechaFin }} ({{ dias }} días)
+    </p>
+  </div>
+
 </div>
 
-  <!-- Nombre y precio -->
-  <div class="moto-header">
-    <h2>{{ moto.nombre }}</h2>
-    <span class="precio">{{ moto.precio }}</span>
-  </div>
-
-  <!-- Detalles de reserva -->
-  <div class="seccion">
-    <div class="detalle-item">
-      <div class="detalle-icon">
-        <ion-icon name="calendar-outline"></ion-icon>
-      </div>
-      <span class="detalle-texto">{{ fechas }}</span>
-    </div>
-
-    <div class="detalle-item">
-      <div class="detalle-icon">
-        <ion-icon name="location-outline"></ion-icon>
-      </div>
-      <span class="detalle-texto">{{ lugar }}</span>
-    </div>
-  </div>
-
-  <!-- Método de pago -->
   <div class="seccion">
     <h3 class="seccion-titulo">Método de pago</h3>
-    <div class="pago-item">
-      <div class="pago-icon">
-        <ion-icon name="card-outline"></ion-icon>
+
+    <div class="campo-tarjeta">
+      <label>Nombre en la tarjeta</label>
+      <input type="text" [(ngModel)]="cardName" placeholder="Nombre completo">
+    </div>
+
+    <div class="campo-tarjeta">
+      <label>Número de tarjeta</label>
+      <input type="text" [(ngModel)]="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19">
+    </div>
+
+    <div class="fechas-row">
+      <div class="fecha-campo">
+        <label>Vencimiento</label>
+        <input type="text" [(ngModel)]="cardExpiry" placeholder="MM/AA" maxlength="5">
       </div>
-      <div class="pago-datos">
-        <span class="pago-tarjeta">{{ tarjeta }}</span>
-        <span class="pago-titular">{{ titular }}</span>
+
+      <div class="fecha-campo">
+        <label>CVV</label>
+        <input type="text" [(ngModel)]="cardCVV" placeholder="123" maxlength="4">
       </div>
-      <ion-icon name="information-circle-outline" class="info-icon"></ion-icon>
     </div>
   </div>
 
-  <!-- Resumen total -->
   <div class="seccion">
     <h3 class="seccion-titulo">Resumen total</h3>
 
-    <div class="resumen-row">
-      <span class="resumen-label">Renta (2 días)</span>
-      <span class="resumen-valor">{{ resumen.renta }}</span>
-    </div>
+    <div class="resumen-card">
+      <div class="resumen-row">
+        <span>Renta ({{ dias }} días)</span>
+        <span>${{ subtotalRenta }}</span>
+      </div>
 
-    <div class="resumen-row">
-      <span class="resumen-label">Seguro Básico</span>
-      <span class="resumen-valor">{{ resumen.seguro }}</span>
-    </div>
+      <div class="resumen-row" *ngIf="servicios.kitSeguridad">
+        <span>Kit de seguridad</span>
+        <span>${{ 100 }}</span>
+      </div>
 
-    <div class="resumen-divider"></div>
+      <div class="resumen-row" *ngIf="servicios.seguroBasico">
+        <span>Seguro básico</span>
+        <span>${{ 150 }}</span>
+      </div>
 
-    <div class="resumen-row total">
-      <span class="resumen-label">Total</span>
-      <span class="resumen-valor">{{ resumen.total }}</span>
+      <div class="resumen-row" *ngIf="servicios.entregaDomicilio">
+        <span>Entrega a domicilio</span>
+        <span>${{ 80 }}</span>
+      </div>
+
+      <div class="resumen-row total-row">
+        <span>Total</span>
+        <span>${{ total }}</span>
+      </div>
     </div>
   </div>
 
+  <p class="error-msg" *ngIf="errorMsg">{{ errorMsg }}</p>
+
 </ion-content>
 
-<!-- Botones  -->
-<div class="footer-btns">
-  <ion-button expand="block" class="btn-confirmar" (click)="confirmarPago()">
-    Confirmar pago
-  </ion-button>
-  <ion-button expand="block" fill="clear" class="btn-cancelar">
-    Cancelar
+<div class="footer-btn" *ngIf="moto">
+  <ion-button
+    expand="block"
+    class="btn-continuar"
+    [disabled]="cargando || !formularioValido"
+    (click)="confirmarRenta()">
+    <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+    <span *ngIf="!cargando">Confirmar pago</span>
   </ion-button>
 </div>

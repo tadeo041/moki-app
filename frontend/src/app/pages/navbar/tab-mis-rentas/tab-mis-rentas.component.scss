@@ -112,3 +112,37 @@ ion-header.ion-no-border ion-toolbar {
   font-weight: 600;
   margin-top: 4px;
 }
+
+.sin-rentas {
+  text-align: center;
+  margin-top: 60px;
+  color: #6b7280;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.badge-finalizada {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+.badge-cancelada {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  z-index: 1;
+}

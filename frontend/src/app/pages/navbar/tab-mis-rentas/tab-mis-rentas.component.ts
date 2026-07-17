@@ -1,22 +1,122 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonBadge } from '@ionic/angular/standalone';
+import { ViewWillEnter } from '@ionic/angular';
+
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonButton,
+  IonBadge
+} from '@ionic/angular/standalone';
+
+import { RentalsService } from '../../../services/rentals.service';
 
 @Component({
   selector: 'app-tab-mis-rentas',
   standalone: true,
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonBadge],
+  imports: [
+    CommonModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonButton,
+    IonBadge
+  ],
   templateUrl: './tab-mis-rentas.component.html',
   styleUrls: ['./tab-mis-rentas.component.scss']
 })
-export class TabMisRentasComponent {
-  rentas = [
-    { id: 1, nombre: 'Bajaj Rouser 125', precio: '$150', dias: 2, entrega: '19 Oct.', estado: 'En curso', imagen: 'assets/motos/moto1.jpg' },
-    { id: 2, nombre: 'Bajaj Rouser 125', precio: '$150', dias: 2, entrega: '19 Oct.', estado: 'En camino', imagen: 'assets/motos/moto2.jpg' },
-  ];
+export class TabMisRentasComponent implements OnInit, ViewWillEnter {
 
-  constructor(private router: Router) {}
+  rentas: any[] = [];
 
-  verDetalle(id: number) { this.router.navigate(['/mis-rentas/detalle', id]); }
+  constructor(
+    private router: Router,
+    private rentalsService: RentalsService
+  ) {}
+
+  ngOnInit(): void {
+    this.cargarRentas();
+  }
+
+  ionViewWillEnter(): void {
+    this.cargarRentas();
+  }
+
+  cargarRentas(): void {
+
+    this.rentalsService.getMyRentals().subscribe({
+
+      next: (response) => {
+
+        console.log(response);
+
+        this.rentas = response;
+
+      },
+
+      error: (error) => {
+
+        console.error(error);
+
+      }
+
+    });
+
+  }
+
+  verDetalle(id: string) {
+
+    this.router.navigate(['/mis-rentas/detalle', id]);
+
+  }
+  getEstadoTexto(status: string): string {
+
+  switch (status) {
+
+    case 'ACTIVE':
+      return 'En curso';
+
+    case 'PENDING':
+      return 'En camino';
+
+    case 'COMPLETED':
+      return 'Finalizada';
+
+    case 'CANCELLED':
+      return 'Cancelada';
+
+    default:
+      return status;
+
+  }
+
+}
+
+getClaseEstado(status: string): string {
+
+  switch (status) {
+
+    case 'ACTIVE':
+      return 'badge-curso';
+
+    case 'PENDING':
+      return 'badge-camino';
+
+    case 'COMPLETED':
+      return 'badge-finalizada';
+
+    case 'CANCELLED':
+      return 'badge-cancelada';
+
+    default:
+      return 'badge-camino';
+
+  }
+
+}
+
 }

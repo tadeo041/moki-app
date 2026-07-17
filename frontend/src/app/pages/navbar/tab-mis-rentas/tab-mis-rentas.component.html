@@ -1,6 +1,8 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title class="section-title">Mis rentas de moto</ion-title>
+    <ion-title class="section-title">
+      Mis rentas de moto
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,35 +15,63 @@
   >
 
     <div class="renta-img">
-      <ion-badge
-        [class]="renta.estado === 'En curso' ? 'badge-curso' : 'badge-camino'"
-      >
-        {{ renta.estado }}
-      </ion-badge>
+
+      <ion-badge [ngClass]="getClaseEstado(renta.status)">
+  {{ getEstadoTexto(renta.status) }}
+</ion-badge>
 
       <img
-        [src]="renta.imagen"
-        [alt]="renta.nombre"
+        [src]="renta.motorcycle?.imageUrl"
+        [alt]="renta.motorcycle?.name"
         class="moto-img"
       />
+
     </div>
 
     <div class="renta-info">
+
       <div class="renta-row">
-        <span class="renta-nombre">{{ renta.nombre }}</span>
-        <span class="renta-precio">{{ renta.precio }}/hora</span>
+
+        <span class="renta-nombre">
+          {{ renta.motorcycle?.name }}
+        </span>
+
+        <span class="renta-precio">
+          ${{ renta.motorcycle?.pricePerHour }}/hora
+        </span>
+
       </div>
+
       <span class="renta-dias">
-        Días restantes: {{ renta.dias }} días | Entrega {{ renta.entrega }}
+
+        Días:
+        {{ renta.totalDays }}
+
+        |
+
+        Entrega:
+        {{ renta.endDate | date:'dd/MM/yyyy' }}
+
       </span>
+
       <ion-button
         expand="block"
         class="btn-detalles"
-        (click)="verDetalle(renta.id); $event.stopPropagation()"
-      >
+        (click)="verDetalle(renta.id); $event.stopPropagation()">
+
         Ver detalles
+
       </ion-button>
+
     </div>
+
+  </div>
+
+  <div
+    *ngIf="rentas.length === 0"
+    class="sin-rentas">
+
+    No tienes rentas registradas.
 
   </div>
 

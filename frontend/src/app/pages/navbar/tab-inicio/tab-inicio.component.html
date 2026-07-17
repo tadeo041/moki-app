@@ -3,7 +3,7 @@
     <div class="header-content">
       <div class="greeting">
         <span class="welcome">Bienvenido 👋</span>
-        <span class="name">Angel Díaz</span>
+        <span class="name">{{ nombreUsuario }}</span>
       </div>
       <div class="avatar">AD</div>
     </div>
@@ -33,15 +33,15 @@
       <div class="moto-img">
         <!-- Badge ahora a la DERECHA -->
         <ion-badge class="badge-disponible">Disponible</ion-badge>
-        <img src="assets/logo-moki.png" alt="Moto" />
+        <img [src]="moto.imageUrl" alt="Moto" />
       </div>
 
       <div class="moto-info">
         <div class="moto-nombre-precio">
-          <span class="moto-nombre">{{ moto.nombre }}</span>
-          <span class="moto-precio">{{ moto.precio }}/hora</span>
+          <span class="moto-nombre">{{ moto.name }}</span>
+          <span class="moto-precio">{{ moto.pricePerHour }}/hora</span>
         </div>
-        <span class="moto-desc">{{ moto.descripcion }}</span>
+        <span class="moto-desc">{{ moto.cc }} cc • {{ moto.year }}</span>
 
         <ion-button
           expand="block"
@@ -62,7 +62,7 @@
         Comparte tu moto de forma segura y empieza a ganar dinero fácilmente.
       </span>
     </div>
-    <ion-button class="btn-renta-ahora">Renta ahora</ion-button>
+    <ion-button class="btn-renta-ahora" routerLink="/publicar-moto">Renta ahora</ion-button>
   </div>
 
   <!-- Banner casco y mochila -->

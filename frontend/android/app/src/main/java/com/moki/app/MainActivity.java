@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.moki.app;
 
 import com.getcapacitor.BridgeActivity;
 

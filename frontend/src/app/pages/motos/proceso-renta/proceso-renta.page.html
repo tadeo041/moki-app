@@ -1,73 +1,146 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/buscador-motos" text=""></ion-back-button>
+      <ion-back-button
+        defaultHref="/buscador-motos"
+        text="">
+      </ion-back-button>
     </ion-buttons>
-    <ion-title>Proceso de rentar moto</ion-title>
+
+    <ion-title>
+      Proceso de rentar moto
+    </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="proceso-content">
+<ion-content
+  class="proceso-content"
+  *ngIf="moto">
 
-  <!-- Imagen placeholder -->
   <div class="moto-img">
-  <ion-badge class="badge-disponible">Disponible</ion-badge>
-</div>
 
-  <!-- Nombre y precio -->
-  <div class="moto-header">
-    <h2>{{ moto.nombre }}</h2>
-    <span class="precio">{{ moto.precio }}/hora</span>
+    <img
+      [src]="moto.imageUrl"
+      [alt]="moto.name">
+
+    <ion-badge class="badge-disponible">
+      Disponible
+    </ion-badge>
+
   </div>
 
-  <!-- Datos de la renta -->
+  <div class="moto-header">
+    <h2>{{ moto.name }}</h2>
+
+    <span class="precio">
+      ${{ moto.pricePerHour }}/hora
+    </span>
+  </div>
+
   <div class="seccion">
-    <h3 class="seccion-titulo">Datos de la renta</h3>
+
+    <h3 class="seccion-titulo">
+      Datos de la renta
+    </h3>
+
     <div class="fechas-row">
+
       <div class="fecha-campo">
         <label>Fecha inicio*</label>
-        <input type="date" [(ngModel)]="fechaInicio" placeholder="DD/MM" />
+
+        <input
+          type="date"
+          [(ngModel)]="fechaInicio">
       </div>
+
       <div class="fecha-campo">
         <label>Fecha final*</label>
-        <input type="date" [(ngModel)]="fechaFin" placeholder="DD/MM" />
+
+        <input
+          type="date"
+          [(ngModel)]="fechaFin">
       </div>
+
     </div>
+
     <div class="dias-renta">
-      <span>{{ diasRenta }} Días a renta</span>
+      <span>{{ diasRenta }} días de renta</span>
     </div>
+
   </div>
 
-  <!-- Servicios adicionales -->
   <div class="seccion">
-    <h3 class="seccion-titulo">Servicios adicionales</h3>
+
+    <h3 class="seccion-titulo">
+      Servicios adicionales
+    </h3>
+
     <label class="check-item">
-      <ion-checkbox [(ngModel)]="servicios.kitSeguridad" mode="md"></ion-checkbox>
-      <span>Kit de seguridad (casco, guantes, chaleco)</span>
+      <ion-checkbox
+        [(ngModel)]="servicios.kitSeguridad">
+      </ion-checkbox>
+
+      <span>
+        Kit de seguridad
+      </span>
     </label>
+
     <label class="check-item">
-      <ion-checkbox [(ngModel)]="servicios.seguroBasico" mode="md"></ion-checkbox>
-      <span>Seguro Básico (contra daños, completo)</span>
+      <ion-checkbox
+        [(ngModel)]="servicios.seguroBasico">
+      </ion-checkbox>
+
+      <span>
+        Seguro básico
+      </span>
     </label>
+
     <label class="check-item">
-      <ion-checkbox [(ngModel)]="servicios.entregaDomicilio" mode="md"></ion-checkbox>
-      <span>Entrega a domicilio</span>
+      <ion-checkbox
+        [(ngModel)]="servicios.entregaDomicilio">
+      </ion-checkbox>
+
+      <span>
+        Entrega a domicilio
+      </span>
     </label>
+
   </div>
 
-  <!-- Método de pago -->
   <div class="seccion">
-    <h3 class="seccion-titulo">Método de pago</h3>
+
+    <h3 class="seccion-titulo">
+      Método de pago
+    </h3>
+
     <div class="campo-tarjeta">
-      <label>Nombre de la tarjeta*</label>
-      <input type="text" [(ngModel)]="nombreTarjeta" />
+
+      <label>
+        Nombre de la tarjeta
+      </label>
+
+      <input
+        type="text"
+        [(ngModel)]="nombreTarjeta">
+
     </div>
+
   </div>
 
 </ion-content>
 
-<div class="footer-btn">
-  <ion-button expand="block" class="btn-continuar" (click)="continuar()">
+<div
+  class="footer-btn"
+  *ngIf="moto">
+
+  <ion-button
+    expand="block"
+    class="btn-continuar"
+    (click)="continuar()">
+
     Continuar
+
   </ion-button>
+
 </div>

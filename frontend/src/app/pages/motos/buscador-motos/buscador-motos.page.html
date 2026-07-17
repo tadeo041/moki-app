@@ -18,31 +18,39 @@
     />
   </div>
 
-  <div class="motos-lista">
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+  </div>
+
+  <div class="motos-lista" *ngIf="!cargando">
     <div
       class="moto-card"
       *ngFor="let moto of motosFiltradas"
       (click)="verDetalle(moto.id)"
     >
-      
+
       <div class="moto-img">
-        <img [src]="moto.imagen || 'assets/placeholder-moto.png'" [alt]="moto.nombre" />
+        <img [src]="moto.imageUrl || 'assets/placeholder-moto.png'" [alt]="moto.name" />
       </div>
 
       <div class="moto-info">
         <div class="moto-top">
-          <span class="moto-nombre">{{ moto.nombre }}</span>
-          <span class="moto-precio">{{ moto.precio }}/hora</span>
+          <span class="moto-nombre">{{ moto.name }}</span>
+          <span class="moto-precio">${{ moto.pricePerHour }}/hora</span>
         </div>
-        <span class="moto-desc">{{ moto.descripcion }}</span>
+        <span class="moto-desc">{{ moto.type }} · {{ moto.cc }}cc</span>
         <ion-button expand="block" class="btn-ver" (click)="verDetalle(moto.id); $event.stopPropagation()">
           Ver detalles
         </ion-button>
       </div>
     </div>
 
-    <div class="empty" *ngIf="motosFiltradas.length === 0">
+    <div class="empty" *ngIf="motosFiltradas.length === 0 && busqueda">
       <p>No se encontraron motos para "{{ busqueda }}"</p>
+    </div>
+
+    <div class="empty" *ngIf="motos.length === 0 && !busqueda">
+      <p>No hay motos disponibles en este momento</p>
     </div>
   </div>
 

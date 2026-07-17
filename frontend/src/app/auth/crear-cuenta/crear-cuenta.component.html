@@ -72,13 +72,15 @@
 
     </div>
 
-   
+
     <div class="action-area">
       <ion-button
         expand="block"
         class="btn-crear"
+        [disabled]="cargando"
         (click)="crearCuenta()">
-        Crear cuenta
+        <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+        <span *ngIf="!cargando">Crear cuenta</span>
       </ion-button>
     </div>
 

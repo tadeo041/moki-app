@@ -57,8 +57,10 @@
       <ion-button
         expand="block"
         class="btn-login"
+        [disabled]="cargando"
         (click)="login()">
-        Iniciar sesión
+        <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+        <span *ngIf="!cargando">Iniciar sesión</span>
       </ion-button>
     </div>
 

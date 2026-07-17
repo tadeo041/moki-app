@@ -1,0 +1,97 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Publicar mi moto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="publicar-content">
+
+  <p class="intro-texto">
+    Comparte los datos de tu moto para que otros usuarios puedan rentarla.
+  </p>
+
+  <div class="seccion">
+    <h3 class="seccion-titulo">Información básica</h3>
+
+    <div class="campo">
+      <label>Nombre de la moto</label>
+      <input type="text" [(ngModel)]="form.name" placeholder="Ej. Yamaha FZ25 2024">
+    </div>
+
+    <div class="campo-row">
+      <div class="campo">
+        <label>Precio por hora</label>
+        <input type="number" [(ngModel)]="form.pricePerHour" placeholder="150">
+      </div>
+
+      <div class="campo">
+        <label>Año</label>
+        <input type="number" [(ngModel)]="form.year" placeholder="2024">
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Cilindraje (cc)</label>
+      <input type="number" [(ngModel)]="form.cc" placeholder="250">
+    </div>
+
+    <div class="campo">
+      <label>URL de la imagen</label>
+      <input type="text" [(ngModel)]="form.imageUrl" placeholder="https://...">
+    </div>
+
+    <div class="campo">
+      <label>Tipo de moto</label>
+      <input type="text" [(ngModel)]="form.type" placeholder="Ej. Deportiva, Urbana">
+    </div>
+  </div>
+
+  <div class="seccion">
+    <h3 class="seccion-titulo">Especificaciones técnicas</h3>
+
+    <div class="campo">
+      <label>Velocidad máxima</label>
+      <input type="text" [(ngModel)]="form.maxSpeed" placeholder="Ej. 140 Km/h">
+    </div>
+
+    <div class="campo">
+      <label>Kilometraje</label>
+      <input type="text" [(ngModel)]="form.mileage" placeholder="Ej. 15,000 Km">
+    </div>
+
+    <div class="campo">
+      <label>Consumo</label>
+      <input type="text" [(ngModel)]="form.consumption" placeholder="Ej. 35 KM/L">
+    </div>
+
+    <div class="campo">
+      <label>Cilindros</label>
+      <input type="text" [(ngModel)]="form.cylinders" placeholder="Ej. 2 cilindros">
+    </div>
+
+    <div class="campo">
+      <label>Frenos</label>
+      <input type="text" [(ngModel)]="form.brakes" placeholder="Ej. ABS Doble Canal">
+    </div>
+
+    <div class="campo">
+      <label>Descripción</label>
+      <textarea [(ngModel)]="form.description" rows="3" placeholder="Cuéntale a los usuarios sobre tu moto..."></textarea>
+    </div>
+  </div>
+
+</ion-content>
+
+<div class="footer-btn">
+  <ion-button
+    expand="block"
+    class="btn-publicar"
+    [disabled]="cargando"
+    (click)="publicar()">
+    <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+    <span *ngIf="!cargando">Publicar moto</span>
+  </ion-button>
+</div>

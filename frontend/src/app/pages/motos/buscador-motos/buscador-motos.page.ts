@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ViewWillEnter } from '@ionic/angular';
 import {
   IonContent,
   IonHeader,
@@ -10,18 +11,16 @@ import {
   IonIcon,
   IonButton,
   IonButtons,
-  IonBackButton
+  IonBackButton,
+  IonSpinner
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { searchOutline, arrowBackOutline } from 'ionicons/icons';
 
-interface Moto {
-  id: number;
-  nombre: string;
-  precio: string;
-  descripcion: string;
-  imagen?: string;
-}
+import {
+  MotorcyclesService,
+  Motorcycle
+} from '../../../services/motorcycles.service';
 
 @Component({
   selector: 'app-buscador-motos',
@@ -38,44 +37,50 @@ interface Moto {
     IonIcon,
     IonButton,
     IonButtons,
-    IonBackButton
+    IonBackButton,
+    IonSpinner
   ]
 })
-export class BuscadorMotosPage {
+export class BuscadorMotosPage implements OnInit, ViewWillEnter {
+
   busqueda = '';
+  motos: Motorcycle[] = [];
+  cargando = true;
 
-  motos: Moto[] = [
-    {
-      id: 1,
-      nombre: 'Yamaha FZ25 2024',
-      precio: '$150',
-      descripcion: 'Ideal para reparto · 250cc',
-      imagen: 'assets/motos/yamaha-fz25.jpg'
-    },
-    {
-      id: 2,
-      nombre: 'Bajaj Rouser 125',
-      precio: '$150',
-      descripcion: 'Ideal para reparto · 150cc',
-      imagen: 'assets/motos/bajaj-125.jpg'
-    },
-    {
-      id: 3,
-      nombre: 'Honda CB190R',
-      precio: '$130',
-      descripcion: 'Urbana y eficiente · 190cc',
-      imagen: 'assets/motos/honda-cb190r.jpg'
-    },
-    {
-      id: 4,
-      nombre: 'Suzuki GS150',
-      precio: '$120',
-      descripcion: 'Económica y ligera · 150cc',
-      imagen: 'assets/motos/suzuki-gs150.jpg'
-    }
-  ];
+  constructor(
+    private router: Router,
+    private motorcyclesService: MotorcyclesService
+  ) {
+    addIcons({
+      searchOutline,
+      arrowBackOutline
+    });
+  }
 
-  get motosFiltradas() {
+  ngOnInit(): void {
+    this.cargarMotos();
+  }
+
+  ionViewWillEnter(): void {
+    this.cargarMotos();
+  }
+
+  cargarMotos(): void {
+    this.cargando = true;
+
+    this.motorcyclesService.getAvailable().subscribe({
+      next: (motos) => {
+        this.motos = motos;
+        this.cargando = false;
+      },
+      error: (error) => {
+        console.error('Error al obtener motos', error);
+        this.cargando = false;
+      }
+    });
+  }
+
+  get motosFiltradas(): Motorcycle[] {
     if (!this.busqueda.trim()) {
       return this.motos;
     }
@@ -84,19 +89,14 @@ export class BuscadorMotosPage {
 
     return this.motos.filter(
       moto =>
-        moto.nombre.toLowerCase().includes(q) ||
-        moto.descripcion.toLowerCase().includes(q)
+        moto.name.toLowerCase().includes(q) ||
+        moto.type.toLowerCase().includes(q) ||
+        moto.description.toLowerCase().includes(q)
     );
   }
 
-  constructor(private router: Router) {
-    addIcons({
-      searchOutline,
-      arrowBackOutline
-    });
-  }
-
-  verDetalle(id: number) {
+  verDetalle(id: string) {
     this.router.navigate(['/detalle-moto', id]);
   }
+
 }

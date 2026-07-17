@@ -1,42 +1,56 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/buscador-motos" text=""></ion-back-button>
+      <ion-back-button
+        defaultHref="/buscador-motos"
+        text="">
+      </ion-back-button>
     </ion-buttons>
+
     <ion-title>Detalles de moto</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="detalle-content" *ngIf="moto">
 
-  <!-- Imagen con badge encima -->
   <div class="moto-img-grande">
-    <img [src]="moto.imagen || 'assets/placeholder-moto.png'" [alt]="moto.nombre" />
-    <span class="badge-disponible">Disponible</span>
+    <img
+      [src]="moto.imageUrl || 'assets/placeholder-moto.png'"
+      [alt]="moto.name">
+
+    <span class="badge-disponible">
+      Disponible
+    </span>
   </div>
 
-  <!-- Nombre y precio  -->
   <div class="moto-header">
     <div class="moto-titulo">
-      <h1>{{ moto.nombre }}</h1>
-      <span class="precio">{{ moto.precio }}/hora</span>
+      <h1>{{ moto.name }}</h1>
+
+      <span class="precio">
+        ${{ moto.pricePerHour }}/hora
+      </span>
     </div>
   </div>
 
-  <!-- Descripción -->
-  <p class="descripcion">{{ moto.descripcion }}</p>
+  <p class="descripcion">
+    {{ moto.description }}
+  </p>
 
-  <!-- Especificaciones -->
   <div class="specs-section">
-    <h2 class="specs-titulo">Especificaciones Técnicas</h2>
+
+    <h2 class="specs-titulo">
+      Especificaciones Técnicas
+    </h2>
 
     <div class="spec-item">
       <div class="spec-icon">
         <ion-icon name="speedometer-outline"></ion-icon>
       </div>
+
       <div class="spec-data">
         <span class="spec-label">V. Máximo</span>
-        <span class="spec-valor">{{ moto.velocidad }}</span>
+        <span class="spec-valor">{{ moto.maxSpeed }}</span>
       </div>
     </div>
 
@@ -44,9 +58,10 @@
       <div class="spec-icon">
         <ion-icon name="map-outline"></ion-icon>
       </div>
+
       <div class="spec-data">
         <span class="spec-label">Kilometraje</span>
-        <span class="spec-valor">{{ moto.kilometraje }}</span>
+        <span class="spec-valor">{{ moto.mileage }}</span>
       </div>
     </div>
 
@@ -54,9 +69,10 @@
       <div class="spec-icon">
         <ion-icon name="flash-outline"></ion-icon>
       </div>
+
       <div class="spec-data">
         <span class="spec-label">Consumo</span>
-        <span class="spec-valor">{{ moto.consumo }}</span>
+        <span class="spec-valor">{{ moto.consumption }}</span>
       </div>
     </div>
 
@@ -64,23 +80,54 @@
       <div class="spec-icon">
         <ion-icon name="bicycle-outline"></ion-icon>
       </div>
+
       <div class="spec-data">
         <span class="spec-label">Tipo</span>
-        <span class="spec-valor">{{ moto.tipo }}</span>
+        <span class="spec-valor">{{ moto.type }}</span>
       </div>
     </div>
+
+    <div class="spec-item">
+      <div class="spec-icon">
+        <ion-icon name="bicycle-outline"></ion-icon>
+      </div>
+
+      <div class="spec-data">
+        <span class="spec-label">Cilindros</span>
+        <span class="spec-valor">{{ moto.cylinders }}</span>
+      </div>
+    </div>
+
+    <div class="spec-item">
+      <div class="spec-icon">
+        <ion-icon name="bicycle-outline"></ion-icon>
+      </div>
+
+      <div class="spec-data">
+        <span class="spec-label">Frenos</span>
+        <span class="spec-valor">{{ moto.brakes }}</span>
+      </div>
+    </div>
+
   </div>
 
-  
   <div class="precio-total-row">
-    <span class="precio-label">Precio total</span>
-    <span class="precio-valor">{{ moto.precio }}/hora</span>
+    <span class="precio-label">
+      Precio
+    </span>
+
+    <span class="precio-valor">
+      ${{ moto.pricePerHour }}/hora
+    </span>
   </div>
 
 </ion-content>
 
 <div class="footer-btn" *ngIf="moto">
-  <ion-button expand="block" class="btn-rentar" (click)="rentarAhora()">
+  <ion-button
+    expand="block"
+    class="btn-rentar"
+    (click)="rentarAhora()">
     Rentar ahora
   </ion-button>
 </div>
