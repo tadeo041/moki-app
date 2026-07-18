@@ -21,6 +21,8 @@ export interface Motorcycle {
   cylinders: string;
   brakes: string;
   description: string;
+  latitude?: number; 
+  longitude?: number; 
 }
 
 export interface CreateMotorcycleDto {
@@ -77,5 +79,14 @@ export class MotorcyclesService {
       }
     );
   }
+
+getAll(): Observable<Motorcycle[]> {
+  return this.http.get<Motorcycle[]>(
+    `${this.api}/motorcycles`,
+    {
+      headers: this.getHeaders()
+    }
+  );
+}  
 
 }

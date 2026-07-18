@@ -1,0 +1,113 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="dashboard-content">
+
+  <!-- Estado de carga -->
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando dashboard...</p>
+  </div>
+
+  <!-- Tarjetas de resumen -->
+  <div class="cards-grid" *ngIf="!cargando && dashboard">
+    <!-- Ingresos -->
+    <div class="card card-ingresos">
+      <div class="card-icon">
+        <ion-icon name="trending-up-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Ingresos hoy</span>
+        <span class="card-value">${{ dashboard.todayRevenue }}</span>
+      </div>
+    </div>
+
+    <div class="card card-ingresos">
+      <div class="card-icon">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Ingresos semana</span>
+        <span class="card-value">${{ dashboard.weekRevenue }}</span>
+      </div>
+    </div>
+
+    <div class="card card-ingresos">
+      <div class="card-icon">
+        <ion-icon name="calendar-number-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Ingresos mes</span>
+        <span class="card-value">${{ dashboard.monthRevenue }}</span>
+      </div>
+    </div>
+
+    <!-- Motos -->
+    <div class="card card-motos">
+      <div class="card-icon">
+        <ion-icon name="bicycle-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Motos disponibles</span>
+        <span class="card-value">{{ dashboard.availableMotorcycles }}</span>
+      </div>
+    </div>
+
+    <div class="card card-motos">
+      <div class="card-icon">
+        <ion-icon name="bicycle-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Motos rentadas</span>
+        <span class="card-value">{{ dashboard.rentedMotorcycles }}</span>
+      </div>
+    </div>
+
+    <div class="card card-motos">
+      <div class="card-icon">
+        <ion-icon name="bicycle-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Total motos</span>
+        <span class="card-value">{{ dashboard.totalMotorcycles }}</span>
+      </div>
+    </div>
+
+    <!-- Rentas -->
+    <div class="card card-rentas">
+      <div class="card-icon">
+        <ion-icon name="receipt-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Rentas activas</span>
+        <span class="card-value">{{ dashboard.activeRentals }}</span>
+      </div>
+    </div>
+
+    <div class="card card-rentas">
+      <div class="card-icon">
+        <ion-icon name="time-outline"></ion-icon>
+      </div>
+      <div class="card-content">
+        <span class="card-label">Rentas pendientes</span>
+        <span class="card-value">{{ dashboard.pendingRentals }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de acción rápida -->
+  <div class="quick-actions" *ngIf="!cargando">
+    <ion-button class="btn-quick" routerLink="/admin/motorcycles/create">
+      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      Registrar moto
+    </ion-button>
+    <ion-button class="btn-quick" routerLink="/admin/sos">
+      <ion-icon slot="start" name="alert-circle-outline"></ion-icon>
+      Ver SOS
+    </ion-button>
+  </div>
+
+</ion-content>

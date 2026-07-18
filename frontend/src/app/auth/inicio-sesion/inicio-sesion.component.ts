@@ -15,7 +15,9 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./inicio-sesion.component.scss']
 })
 export class InicioSesionComponent {
-  email = ''; password = ''; showPassword = false;
+  email = '';
+  password = '';
+  showPassword = false;
   cargando = false;
 
   private toastController = inject(ToastController);
@@ -42,7 +44,6 @@ export class InicioSesionComponent {
   }
 
   login() {
-
     if (!this.email || !this.password) {
       this.mostrarToast('Completa todos los campos');
       return;
@@ -52,26 +53,19 @@ export class InicioSesionComponent {
 
     this.authService.login(this.email, this.password)
       .subscribe({
-
         next: (respuesta) => {
-
           this.cargando = false;
-
           this.authService.guardarToken(respuesta.token);
+          this.authService.guardarUsuario(respuesta.user);
 
-          localStorage.setItem(
-            'usuario',
-            JSON.stringify(respuesta.user)
-          );
-
-          this.router.navigate(['/tabs/inicio']);
-
+          if (respuesta.user.role === 'ADMIN') {
+            this.router.navigate(['/admin/dashboard']);
+          } else {
+            this.router.navigate(['/tabs/inicio']);
+          }
         },
-
         error: (error) => {
-
           this.cargando = false;
-
           console.error(error);
 
           if (error.status === 0) {
@@ -82,9 +76,7 @@ export class InicioSesionComponent {
             const mensaje = error.error?.message || 'Ocurrió un error, intenta de nuevo';
             this.mostrarToast(mensaje);
           }
-
         }
-
       });
   }
 }

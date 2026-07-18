@@ -1,0 +1,55 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Motos registradas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/admin/motorcycles/create">
+        <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="motorcycles-content">
+
+  <!-- Estado de carga -->
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando motos...</p>
+  </div>
+
+  <!-- Lista de motos -->
+  <div class="motos-list" *ngIf="!cargando">
+    <div
+      class="moto-item"
+      *ngFor="let moto of motos"
+      (click)="verDetalle(moto.id)"
+    >
+      <div class="moto-img">
+        <img [src]="moto.imageUrl" [alt]="moto.name" />
+      </div>
+      <div class="moto-info">
+        <div class="moto-header">
+          <span class="moto-name">{{ moto.name }}</span>
+          <span class="moto-price">${{ moto.pricePerHour }}/hora</span>
+        </div>
+        <div class="moto-details">
+          <span>{{ moto.cc }} cc</span>
+          <span>•</span>
+          <span>{{ moto.year }}</span>
+          <span>•</span>
+          <span [class]="'status-' + moto.status.toLowerCase()">{{ moto.status }}</span>
+        </div>
+        <div class="moto-location" *ngIf="moto.latitude && moto.longitude">
+          <ion-icon name="location-outline"></ion-icon>
+          <span>{{ moto.latitude | number:'1.4-4' }}, {{ moto.longitude | number:'1.4-4' }}</span>
+        </div>
+      </div>
+      <ion-icon class="arrow-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div class="empty" *ngIf="motos.length === 0">
+      <p>No hay motos registradas</p>
+    </div>
+  </div>
+
+</ion-content>

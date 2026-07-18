@@ -1,0 +1,143 @@
+ion-toolbar {
+  --background: #ffffff;
+  --padding-start: 8px;
+}
+
+ion-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #001534;
+}
+
+.detail-content {
+  --background: #ffffff;
+}
+
+.cargando-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 12px;
+
+  p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+}
+
+.moto-img-grande {
+  position: relative;
+  height: 220px;
+  background: #f3f4f6;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .badge-available {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #dcfce7;
+    color: #16a34a;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .badge-rented {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #fef3c7;
+    color: #d97706;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .badge-maintenance {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+}
+
+.moto-header {
+  padding: 20px 20px 0;
+}
+
+.moto-titulo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #001534;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .precio {
+    font-size: 18px;
+    font-weight: 700;
+    color: #001534;
+  }
+}
+
+.descripcion {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+
+.specs-section {
+  padding: 20px 20px 0;
+}
+
+.specs-titulo {
+  font-size: 15px;
+  font-weight: 700;
+  color: #001534;
+  margin: 0 0 14px;
+}
+
+.spec-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .spec-label {
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  .spec-valor {
+    font-size: 13px;
+    font-weight: 600;
+    color: #001534;
+  }
+}

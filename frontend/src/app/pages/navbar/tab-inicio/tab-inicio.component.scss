@@ -168,3 +168,77 @@ ion-toolbar {
     font-size: 12px; color: #94a3b8; line-height: 1.4;
   }
 }
+
+/* Agregar al final del archivo existente */
+
+.sos-button-container {
+  margin: 8px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sos-button {
+  --background: #dc2626;
+  --background-activated: #b91c1c;
+  --color: #ffffff;
+  --border-radius: 16px;
+  --padding-top: 18px;
+  --padding-bottom: 18px;
+  height: 56px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+  animation: pulse 2s infinite;
+
+  ion-icon {
+    font-size: 24px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(220, 38, 38, 0.7);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+  }
+}
+
+.sos-subtext {
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.cargando-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  gap: 12px;
+
+  p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.spacer {
+  height: 20px;
+}

@@ -21,6 +21,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   rentals   Rental[]
+  sosAlerts SosAlert[]
 }
 
 model Motorcycle {
@@ -44,6 +45,7 @@ model Motorcycle {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   rentals         Rental[]
+  sosAlerts       SosAlert[]
 }
 
 model Rental {
@@ -70,6 +72,20 @@ model Rental {
   motorcycle        Motorcycle     @relation(fields: [motorcycleId], references: [id])
 }
 
+model SosAlert {
+  id            String     @id @default(cuid())
+  userId        String
+  motorcycleId  String
+  latitude      Float?
+  longitude     Float?
+  message       String?
+  status        SosStatus  @default(PENDING)
+  createdAt     DateTime   @default(now())
+  resolvedAt    DateTime?
+  user          User       @relation(fields: [userId], references: [id])
+  motorcycle    Motorcycle @relation(fields: [motorcycleId], references: [id])
+}
+
 enum Status {
   AVAILABLE
   RENTED
@@ -88,4 +104,10 @@ enum PaymentStatus {
   PAID
   FAILED
   REFUNDED
+}
+
+enum SosStatus {
+  PENDING
+  RESOLVED
+  CANCELLED
 }

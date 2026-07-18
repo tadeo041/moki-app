@@ -1,0 +1,49 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Activar SOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="sos-activar-content">
+
+  <div class="sos-icon-container">
+    <ion-icon name="alert-circle" class="sos-icon"></ion-icon>
+  </div>
+
+  <h1 class="sos-title">¿Estás en peligro?</h1>
+
+  <p class="sos-description">
+    Al presionar el botón, enviaremos una alerta de emergencia con tu ubicación actual.
+    Un administrador recibirá tu solicitud de ayuda.
+  </p>
+
+  <div class="sos-info" *ngIf="rentaActiva">
+    <ion-icon name="bicycle-outline"></ion-icon>
+    <span>Moto: {{ rentaActiva.motorcycle?.name }}</span>
+  </div>
+
+  <div class="sos-info" *ngIf="ubicacion">
+    <ion-icon name="location-outline"></ion-icon>
+    <span>Ubicación: {{ ubicacion.lat | number:'1.4-4' }}, {{ ubicacion.lng | number:'1.4-4' }}</span>
+  </div>
+
+  <div class="sos-buttons">
+    <ion-button class="btn-sos" (click)="activarSos()" [disabled]="cargando">
+      <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+      <span *ngIf="!cargando">¡ACTIVAR EMERGENCIA!</span>
+    </ion-button>
+
+    <ion-button class="btn-cancelar" fill="clear" (click)="cancelar()">
+      Cancelar
+    </ion-button>
+  </div>
+
+  <div class="sos-advertencia">
+    <ion-icon name="warning-outline"></ion-icon>
+    <span>Solo utiliza esta función en caso de emergencia real.</span>
+  </div>
+
+</ion-content>

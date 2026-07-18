@@ -8,15 +8,17 @@ import {
   IonContent,
   IonIcon,
   IonButton,
-  IonBadge
+  IonBadge,
+  IonSpinner
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { searchOutline } from 'ionicons/icons';
+import { searchOutline, alertCircleOutline } from 'ionicons/icons';
 
 import {
   MotorcyclesService,
   Motorcycle
 } from '../../../services/motorcycles.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-tab-inicio',
@@ -29,7 +31,8 @@ import {
     IonContent,
     IonIcon,
     IonButton,
-    IonBadge
+    IonBadge,
+    IonSpinner
   ],
   templateUrl: './tab-inicio.component.html',
   styleUrls: ['./tab-inicio.component.scss']
@@ -38,24 +41,21 @@ export class TabInicioComponent implements OnInit, ViewWillEnter {
 
   motos: Motorcycle[] = [];
   nombreUsuario = '';
+  iniciales = '';
+  cargando = true;
 
   constructor(
     private router: Router,
-    private motorcyclesService: MotorcyclesService
+    private motorcyclesService: MotorcyclesService,
+    private authService: AuthService
   ) {
-    addIcons({ searchOutline });
+    addIcons({ searchOutline, alertCircleOutline });
   }
 
   ngOnInit(): void {
-
-    const usuario = localStorage.getItem('usuario');
-
-    if (usuario) {
-      this.nombreUsuario = JSON.parse(usuario).name;
-    }
-
+    this.nombreUsuario = this.authService.obtenerNombre();
+    this.iniciales = this.authService.obtenerIniciales();
     this.cargarMotosDisponibles();
-
   }
 
   ionViewWillEnter(): void {
@@ -63,21 +63,21 @@ export class TabInicioComponent implements OnInit, ViewWillEnter {
   }
 
   cargarMotosDisponibles(): void {
+    this.cargando = true;
 
     this.motorcyclesService.getAvailable().subscribe({
       next: (motos) => {
-        console.log('Motos disponibles:', motos);
         this.motos = motos;
+        this.cargando = false;
       },
       error: (error) => {
         console.error('Error al obtener motos', error);
+        this.cargando = false;
       }
     });
-
   }
 
   verDetalle(id: string) {
     this.router.navigate(['/detalle-moto', id]);
   }
-
 }

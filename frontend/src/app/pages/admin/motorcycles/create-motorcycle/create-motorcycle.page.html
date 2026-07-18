@@ -1,0 +1,107 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/motorcycles" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar moto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="create-content">
+
+  <div class="seccion">
+    <h3 class="seccion-titulo">Información básica</h3>
+
+    <div class="campo">
+      <label>Nombre de la moto *</label>
+      <input type="text" [(ngModel)]="form.name" placeholder="Ej. Bajaj Boxer BM150">
+    </div>
+
+    <div class="campo-row">
+      <div class="campo">
+        <label>Precio por hora *</label>
+        <input type="number" [(ngModel)]="form.pricePerHour" placeholder="150">
+      </div>
+      <div class="campo">
+        <label>Año *</label>
+        <input type="number" [(ngModel)]="form.year" placeholder="2024">
+      </div>
+    </div>
+
+    <div class="campo">
+      <label>Cilindraje (cc) *</label>
+      <input type="number" [(ngModel)]="form.cc" placeholder="150">
+    </div>
+
+    <div class="campo">
+      <label>URL de la imagen *</label>
+      <input type="text" [(ngModel)]="form.imageUrl" placeholder="https://...">
+    </div>
+
+    <div class="campo">
+      <label>Tipo de moto *</label>
+      <input type="text" [(ngModel)]="form.type" placeholder="Ej. Trabajo, Deportiva">
+    </div>
+  </div>
+
+  <div class="seccion">
+    <h3 class="seccion-titulo">Especificaciones técnicas</h3>
+
+    <div class="campo">
+      <label>Velocidad máxima *</label>
+      <input type="text" [(ngModel)]="form.maxSpeed" placeholder="Ej. 120 Km/h">
+    </div>
+
+    <div class="campo">
+      <label>Kilometraje *</label>
+      <input type="text" [(ngModel)]="form.mileage" placeholder="Ej. 0 Km">
+    </div>
+
+    <div class="campo">
+      <label>Consumo *</label>
+      <input type="text" [(ngModel)]="form.consumption" placeholder="Ej. 45 KM/L">
+    </div>
+
+    <div class="campo">
+      <label>Cilindros *</label>
+      <input type="text" [(ngModel)]="form.cylinders" placeholder="Ej. 1 cilindro">
+    </div>
+
+    <div class="campo">
+      <label>Frenos *</label>
+      <input type="text" [(ngModel)]="form.brakes" placeholder="Ej. Disco / Tambor">
+    </div>
+
+    <div class="campo">
+      <label>Descripción</label>
+      <textarea [(ngModel)]="form.description" rows="3" placeholder="Descripción de la moto..."></textarea>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <h3 class="seccion-titulo">Ubicación (Opcional)</h3>
+
+    <div class="campo-row">
+      <div class="campo">
+        <label>Latitud</label>
+        <input type="number" [(ngModel)]="form.latitude" placeholder="25.6866">
+      </div>
+      <div class="campo">
+        <label>Longitud</label>
+        <input type="number" [(ngModel)]="form.longitude" placeholder="-100.3161">
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+
+<div class="footer-btn">
+  <ion-button
+    expand="block"
+    class="btn-registrar"
+    [disabled]="cargando || !formularioValido"
+    (click)="registrar()">
+    <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+    <span *ngIf="!cargando">Registrar moto</span>
+  </ion-button>
+</div>

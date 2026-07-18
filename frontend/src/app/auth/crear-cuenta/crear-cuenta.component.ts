@@ -15,8 +15,11 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./crear-cuenta.component.scss']
 })
 export class CrearCuentaComponent {
-  nombre = ''; email = ''; password = '';
-  showPassword = false; aceptaTerminos = false;
+  nombre = '';
+  email = '';
+  password = '';
+  showPassword = false;
+  aceptaTerminos = false;
   cargando = false;
 
   private toastController = inject(ToastController);
@@ -43,55 +46,32 @@ export class CrearCuentaComponent {
   }
 
   async crearCuenta() {
-
-    if (
-      !this.nombre ||
-      !this.email ||
-      !this.password ||
-      !this.aceptaTerminos
-    ) {
+    if (!this.nombre || !this.email || !this.password || !this.aceptaTerminos) {
       await this.mostrarToast('Completa todos los campos y acepta los términos.');
       return;
     }
 
     this.cargando = true;
 
-    this.authService.register(
-      this.nombre,
-      this.email,
-      this.password
-    ).subscribe({
-
+    this.authService.register(this.nombre, this.email, this.password).subscribe({
       next: async (respuesta) => {
-
         this.cargando = false;
-
         this.authService.guardarToken(respuesta.token);
-
-        localStorage.setItem(
-          'usuario',
-          JSON.stringify(respuesta.user)
-        );
-
+        this.authService.guardarUsuario(respuesta.user);
         await this.mostrarToast('Cuenta creada correctamente', 'success');
 
-        this.router.navigate(['/tabs/inicio']);
-
+        if (respuesta.user.role === 'ADMIN') {
+          this.router.navigate(['/admin/dashboard']);
+        } else {
+          this.router.navigate(['/tabs/inicio']);
+        }
       },
-
       error: async (error) => {
-
         this.cargando = false;
-
         console.error(error);
-
         const mensaje = error.error?.message || 'Ocurrió un error al crear la cuenta, intenta de nuevo';
-
         await this.mostrarToast(mensaje);
-
       }
-
     });
-
   }
 }

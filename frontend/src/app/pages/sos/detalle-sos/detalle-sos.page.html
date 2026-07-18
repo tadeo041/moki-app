@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sos/mis-alertas" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle SOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detalle-sos-content">
+
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando detalles...</p>
+  </div>
+
+  <div *ngIf="!cargando && alerta">
+
+    <div class="sos-header">
+      <ion-icon [name]="alerta.status === 'RESOLVED' ? 'checkmark-circle' : 'alert-circle'" 
+                [class]="'sos-icon-' + alerta.status.toLowerCase()"></ion-icon>
+      <h1>{{ alerta.status }}</h1>
+    </div>
+
+    <div class="info-section">
+      <div class="info-item">
+        <ion-icon name="bicycle-outline"></ion-icon>
+        <span>{{ alerta.motorcycleName }}</span>
+      </div>
+      <div class="info-item">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>{{ alerta.userName }}</span>
+      </div>
+      <div class="info-item">
+        <ion-icon name="mail-outline"></ion-icon>
+        <span>{{ alerta.userEmail }}</span>
+      </div>
+      <div class="info-item">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>{{ alerta.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="info-item" *ngIf="alerta.resolvedAt">
+        <ion-icon name="checkmark-done-outline"></ion-icon>
+        <span>Resuelta: {{ alerta.resolvedAt | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="info-item" *ngIf="alerta.latitude && alerta.longitude">
+        <ion-icon name="location-outline"></ion-icon>
+        <span>{{ alerta.latitude | number:'1.4-4' }}, {{ alerta.longitude | number:'1.4-4' }}</span>
+      </div>
+    </div>
+
+    <div class="message-section" *ngIf="alerta.message">
+      <h3>Mensaje</h3>
+      <p>{{ alerta.message }}</p>
+    </div>
+
+    <div class="actions-section" *ngIf="alerta.status === 'PENDING'">
+      <ion-button class="btn-cancelar" (click)="cancelarAlerta()">
+        Cancelar alerta
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

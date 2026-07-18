@@ -1,0 +1,72 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Alertas SOS</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cargarAlertas()">
+        <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="sos-content">
+
+  <!-- Estado de carga -->
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando alertas SOS...</p>
+  </div>
+
+  <!-- Resumen -->
+  <div class="summary-cards" *ngIf="!cargando && summary">
+    <div class="summary-card total">
+      <span class="summary-number">{{ summary.total }}</span>
+      <span class="summary-label">Total</span>
+    </div>
+    <div class="summary-card pending">
+      <span class="summary-number">{{ summary.pending }}</span>
+      <span class="summary-label">Pendientes</span>
+    </div>
+    <div class="summary-card resolved">
+      <span class="summary-number">{{ summary.resolved }}</span>
+      <span class="summary-label">Resueltas</span>
+    </div>
+    <div class="summary-card cancelled">
+      <span class="summary-number">{{ summary.cancelled }}</span>
+      <span class="summary-label">Canceladas</span>
+    </div>
+  </div>
+
+  <!-- Lista de alertas -->
+  <div class="alertas-list" *ngIf="!cargando">
+    <div
+      class="alerta-item"
+      *ngFor="let alerta of alertas"
+      (click)="verDetalle(alerta.id)"
+    >
+      <div class="alerta-header">
+        <span class="alerta-usuario">{{ alerta.userName }}</span>
+        <span [class]="'status-badge status-' + alerta.status.toLowerCase()">
+          {{ alerta.status }}
+        </span>
+      </div>
+      <div class="alerta-info">
+        <span class="alerta-moto">{{ alerta.motorcycleName }}</span>
+        <span class="alerta-fecha">{{ alerta.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+      <div class="alerta-mensaje" *ngIf="alerta.message">
+        {{ alerta.message }}
+      </div>
+      <div class="alerta-ubicacion" *ngIf="alerta.latitude && alerta.longitude">
+        <ion-icon name="location-outline"></ion-icon>
+        <span>{{ alerta.latitude | number:'1.4-4' }}, {{ alerta.longitude | number:'1.4-4' }}</span>
+      </div>
+      <ion-icon class="arrow-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div class="empty" *ngIf="alertas.length === 0">
+      <p>No hay alertas SOS registradas</p>
+    </div>
+  </div>
+
+</ion-content>

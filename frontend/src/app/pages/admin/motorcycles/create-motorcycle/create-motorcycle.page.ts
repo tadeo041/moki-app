@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonContent,
   IonHeader,
@@ -14,19 +14,17 @@ import {
   ToastController
 } from '@ionic/angular/standalone';
 
-import {
-  MotorcyclesService,
-  CreateMotorcycleDto
-} from '../../../services/motorcycles.service';
+import { AdminService } from '../../../../services/admin.service';
 
 @Component({
-  selector: 'app-publicar-moto',
+  selector: 'app-create-motorcycle',
   standalone: true,
-  templateUrl: './publicar-moto.page.html',
-  styleUrls: ['./publicar-moto.page.scss'],
+  templateUrl: './create-motorcycle.page.html',
+  styleUrls: ['./create-motorcycle.page.scss'],
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
     IonContent,
     IonHeader,
     IonToolbar,
@@ -37,13 +35,13 @@ import {
     IonSpinner
   ]
 })
-export class PublicarMotoPage {
+export class CreateMotorcyclePage {
 
-  private motorcyclesService = inject(MotorcyclesService);
+  private adminService = inject(AdminService);
   private toastController = inject(ToastController);
   private router = inject(Router);
 
-  form: CreateMotorcycleDto = {
+  form = {
     name: '',
     pricePerHour: 0,
     cc: 0,
@@ -55,7 +53,9 @@ export class PublicarMotoPage {
     type: '',
     cylinders: '',
     brakes: '',
-    description: ''
+    description: '',
+    latitude: null as number | null,
+    longitude: null as number | null
   };
 
   cargando = false;
@@ -87,29 +87,26 @@ export class PublicarMotoPage {
     await toast.present();
   }
 
-  publicar(): void {
-
+  registrar(): void {
     if (!this.formularioValido) {
-      this.mostrarToast('Completa todos los campos');
+      this.mostrarToast('Completa todos los campos obligatorios');
       return;
     }
 
     this.cargando = true;
 
-    this.motorcyclesService.crear(this.form).subscribe({
+    this.adminService.createMotorcycle(this.form).subscribe({
       next: async () => {
         this.cargando = false;
-        await this.mostrarToast('¡Tu moto fue publicada!', 'success');
-        this.router.navigate(['/tabs/inicio']);
+        await this.mostrarToast('¡Moto registrada exitosamente!', 'success');
+        this.router.navigate(['/admin/motorcycles']);
       },
       error: (error) => {
         this.cargando = false;
         console.error(error);
-        const mensaje = error.error?.message || 'No se pudo publicar la moto, intenta de nuevo';
+        const mensaje = error.error?.message || 'No se pudo registrar la moto, intenta de nuevo';
         this.mostrarToast(mensaje);
       }
     });
-
   }
-
 }

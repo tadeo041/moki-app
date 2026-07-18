@@ -5,7 +5,7 @@
         <span class="welcome">Bienvenido 👋</span>
         <span class="name">{{ nombreUsuario }}</span>
       </div>
-      <div class="avatar">AD</div>
+      <div class="avatar">{{ iniciales }}</div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -18,20 +18,34 @@
     <span>¿A dónde vas? Busca tu moto ideal</span>
   </div>
 
+  <!-- Botón SOS (Emergencia) -->
+  <div class="sos-button-container">
+    <ion-button class="sos-button" routerLink="/sos/activar">
+      <ion-icon slot="start" name="alert-circle-outline"></ion-icon>
+      <span>¡EMERGENCIA!</span>
+    </ion-button>
+    <span class="sos-subtext">Presiona si necesitas ayuda urgente</span>
+  </div>
+
   <!-- Motos disponibles -->
   <div class="section-header">
     <span class="section-title">Motos disponibles</span>
     <span class="ver-todas" routerLink="/buscador-motos">Ver todas</span>
   </div>
 
-  <div class="motos-scroll">
+  <!-- Estados de carga -->
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando motos disponibles...</p>
+  </div>
+
+  <div class="motos-scroll" *ngIf="!cargando">
     <div
       class="moto-card"
       *ngFor="let moto of motos"
       (click)="verDetalle(moto.id)"
     >
       <div class="moto-img">
-        <!-- Badge ahora a la DERECHA -->
         <ion-badge class="badge-disponible">Disponible</ion-badge>
         <img [src]="moto.imageUrl" alt="Moto" />
       </div>
@@ -54,20 +68,12 @@
     </div>
   </div>
 
-  <!-- Banner genera ingresos -->
-  <div class="banner-ingresos">
-    <div class="banner-text">
-      <span class="banner-title">Genera ingresos extra</span>
-      <span class="banner-subtitle">
-        Comparte tu moto de forma segura y empieza a ganar dinero fácilmente.
-      </span>
-    </div>
-    <ion-button class="btn-renta-ahora" routerLink="/publicar-moto">Renta ahora</ion-button>
+  <div class="empty" *ngIf="!cargando && motos.length === 0">
+    <p>No hay motos disponibles en este momento</p>
   </div>
 
   <!-- Banner casco y mochila -->
   <div class="banner-casco">
-    
     <div class="banner-casco-text">
       <span class="banner-casco-title">¡Lleva casco y mochila incluidos!</span>
       <span class="banner-casco-subtitle">
@@ -75,5 +81,7 @@
       </span>
     </div>
   </div>
+
+  <div class="spacer"></div>
 
 </ion-content>

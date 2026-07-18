@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/inicio" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Mis Alertas SOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="mis-alertas-content">
+
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando tus alertas...</p>
+  </div>
+
+  <div class="alertas-list" *ngIf="!cargando">
+    <div
+      class="alerta-item"
+      *ngFor="let alerta of alertas"
+      (click)="verDetalle(alerta.id)"
+    >
+      <div class="alerta-header">
+<span class="alerta-moto">{{ alerta.motorcycle?.name || alerta.motorcycleName || 'Sin nombre' }}</span>
+        <span [class]="'status-badge status-' + alerta.status.toLowerCase()">
+          {{ alerta.status }}
+        </span>
+      </div>
+      <div class="alerta-fecha">
+        {{ alerta.createdAt | date:'dd/MM/yyyy HH:mm' }}
+      </div>
+      <div class="alerta-mensaje" *ngIf="alerta.message">
+        {{ alerta.message }}
+      </div>
+      <ion-icon class="arrow-icon" name="chevron-forward-outline"></ion-icon>
+    </div>
+
+    <div class="empty" *ngIf="alertas.length === 0">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      <p>No tienes alertas SOS registradas</p>
+      <span>¡Qué bueno! Mantente seguro.</span>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,76 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin/motorcycles" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle de moto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detail-content">
+
+  <!-- Estado de carga -->
+  <div class="cargando-wrapper" *ngIf="cargando">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando detalles...</p>
+  </div>
+
+  <div *ngIf="!cargando && moto">
+
+    <div class="moto-img-grande">
+      <img [src]="moto.imageUrl" [alt]="moto.name">
+      <span [class]="'badge-' + moto.status.toLowerCase()">{{ moto.status }}</span>
+    </div>
+
+    <div class="moto-header">
+      <div class="moto-titulo">
+        <h1>{{ moto.name }}</h1>
+        <span class="precio">${{ moto.pricePerHour }}/hora</span>
+      </div>
+      <p class="descripcion">{{ moto.description }}</p>
+    </div>
+
+    <div class="specs-section">
+      <h2 class="specs-titulo">Especificaciones Técnicas</h2>
+
+      <div class="spec-item">
+        <span class="spec-label">V. Máximo</span>
+        <span class="spec-valor">{{ moto.maxSpeed }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Kilometraje</span>
+        <span class="spec-valor">{{ moto.mileage }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Consumo</span>
+        <span class="spec-valor">{{ moto.consumption }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Tipo</span>
+        <span class="spec-valor">{{ moto.type }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Cilindros</span>
+        <span class="spec-valor">{{ moto.cylinders }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Frenos</span>
+        <span class="spec-valor">{{ moto.brakes }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Año</span>
+        <span class="spec-valor">{{ moto.year }}</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Cilindrada</span>
+        <span class="spec-valor">{{ moto.cc }} cc</span>
+      </div>
+      <div class="spec-item" *ngIf="moto.latitude && moto.longitude">
+        <span class="spec-label">Ubicación</span>
+        <span class="spec-valor">{{ moto.latitude | number:'1.4-4' }}, {{ moto.longitude | number:'1.4-4' }}</span>
+      </div>
+    </div>
+
+  </div>
+
+</ion-content>

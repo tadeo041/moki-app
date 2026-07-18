@@ -1,0 +1,119 @@
+ion-toolbar {
+  --background: #ffffff;
+}
+
+ion-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #001534;
+}
+
+.dashboard-content {
+  --background: #f9fafb;
+  --padding-bottom: 20px;
+}
+
+.cargando-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 12px;
+
+  p {
+    font-size: 14px;
+    color: #6b7280;
+    margin: 0;
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 16px;
+
+  .card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ion-icon {
+        font-size: 20px;
+      }
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+
+      .card-label {
+        font-size: 11px;
+        color: #6b7280;
+        font-weight: 500;
+      }
+
+      .card-value {
+        font-size: 18px;
+        font-weight: 700;
+        color: #001534;
+      }
+    }
+  }
+
+  .card-ingresos .card-icon {
+    background: #dbeafe;
+    ion-icon { color: #1d4ed8; }
+  }
+
+  .card-motos .card-icon {
+    background: #dcfce7;
+    ion-icon { color: #16a34a; }
+  }
+
+  .card-rentas .card-icon {
+    background: #fef3c7;
+    ion-icon { color: #d97706; }
+  }
+}
+
+.quick-actions {
+  padding: 8px 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .btn-quick {
+    --background: #001534;
+    --color: #ffffff;
+    --border-radius: 14px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: 600;
+    --box-shadow: none;
+  }
+}

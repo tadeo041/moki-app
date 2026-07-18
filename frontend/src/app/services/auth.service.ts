@@ -8,6 +8,7 @@ export interface AuthResponse {
     id: string;
     email: string;
     name: string;
+    role: string;
   };
   token: string;
 }
@@ -16,15 +17,11 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-
   private http = inject(HttpClient);
   private api = environment.apiUrl;
 
   login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.api}/auth/login`, {
-      email,
-      password
-    });
+    return this.http.post<AuthResponse>(`${this.api}/auth/login`, { email, password });
   }
 
   register(name: string, email: string, password: string): Observable<AuthResponse> {
@@ -35,7 +32,7 @@ export class AuthService {
     });
   }
 
-  guardarToken(token: string) {
+  guardarToken(token: string): void {
     localStorage.setItem('token', token);
   }
 
@@ -47,12 +44,42 @@ export class AuthService {
     return !!this.obtenerToken();
   }
 
-  cerrarSesion() {
+  cerrarSesion(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 
-  guardarUsuario(user: { id: string; email: string; name: string }) {
-  localStorage.setItem('usuario', JSON.stringify(user));
-}
+  guardarUsuario(user: any): void {
+    localStorage.setItem('usuario', JSON.stringify(user));
+  }
 
-} 
+  obtenerUsuario(): any {
+    const user = localStorage.getItem('usuario');
+    return user ? JSON.parse(user) : null;
+  }
+
+  esAdmin(): boolean {
+    const user = this.obtenerUsuario();
+    return user?.role === 'ADMIN';
+  }
+
+  obtenerNombre(): string {
+    const user = this.obtenerUsuario();
+    return user?.name || '';
+  }
+
+  obtenerEmail(): string {
+    const user = this.obtenerUsuario();
+    return user?.email || '';
+  }
+
+  obtenerIniciales(): string {
+    const nombre = this.obtenerNombre();
+    if (!nombre) return '';
+    const partes = nombre.trim().split(' ');
+    if (partes.length === 1) {
+      return partes[0].substring(0, 2).toUpperCase();
+    }
+    return (partes[0][0] + partes[partes.length - 1][0]).toUpperCase();
+  }
+}
