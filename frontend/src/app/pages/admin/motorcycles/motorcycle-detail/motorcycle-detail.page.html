@@ -19,7 +19,7 @@
 
     <div class="moto-img-grande">
       <img [src]="moto.imageUrl" [alt]="moto.name">
-      <span [class]="'badge-' + moto.status.toLowerCase()">{{ moto.status }}</span>
+      <span [class]="'badge-' + moto.status.toLowerCase()">{{ moto.status | statusTranslate }}</span>
     </div>
 
     <div class="moto-header">
@@ -64,10 +64,6 @@
       <div class="spec-item">
         <span class="spec-label">Cilindrada</span>
         <span class="spec-valor">{{ moto.cc }} cc</span>
-      </div>
-      <div class="spec-item" *ngIf="moto.latitude && moto.longitude">
-        <span class="spec-label">Ubicación</span>
-        <span class="spec-valor">{{ moto.latitude | number:'1.4-4' }}, {{ moto.longitude | number:'1.4-4' }}</span>
       </div>
     </div>
 

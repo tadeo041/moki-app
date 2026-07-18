@@ -67,6 +67,10 @@ export const routes: Routes = [
         path: 'sos',
         loadComponent: () => import('./pages/admin/sos/sos.page').then(m => m.AdminSosPage)
       },
+      {
+        path: 'perfil',
+        loadComponent: () => import('./pages/admin/perfil/perfil.page').then(m => m.AdminPerfilPage)
+      },      
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },

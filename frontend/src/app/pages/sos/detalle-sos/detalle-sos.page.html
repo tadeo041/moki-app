@@ -19,7 +19,7 @@
     <div class="sos-header">
       <ion-icon [name]="alerta.status === 'RESOLVED' ? 'checkmark-circle' : 'alert-circle'" 
                 [class]="'sos-icon-' + alerta.status.toLowerCase()"></ion-icon>
-      <h1>{{ alerta.status }}</h1>
+      <h1>{{ alerta.status | statusTranslate }}</h1>
     </div>
 
     <div class="info-section">
@@ -54,8 +54,23 @@
       <p>{{ alerta.message }}</p>
     </div>
 
-    <div class="actions-section" *ngIf="alerta.status === 'PENDING'">
-      <ion-button class="btn-cancelar" (click)="cancelarAlerta()">
+    <!-- Botones de acción -->
+    <div class="actions-section">
+      <!-- Botón Resolver - solo para admin -->
+      <ion-button 
+        *ngIf="esAdmin && alerta.status === 'PENDING'"
+        class="btn-resolver" 
+        (click)="resolverAlerta()"
+        [disabled]="cargando">
+        <ion-spinner *ngIf="cargando" name="dots"></ion-spinner>
+        <span *ngIf="!cargando">Marcar como resuelta</span>
+      </ion-button>
+
+      <!-- Botón Cancelar - solo para el usuario que creó la alerta -->
+      <ion-button 
+        *ngIf="!esAdmin && alerta.status === 'PENDING'"
+        class="btn-cancelar" 
+        (click)="cancelarAlerta()">
         Cancelar alerta
       </ion-button>
     </div>

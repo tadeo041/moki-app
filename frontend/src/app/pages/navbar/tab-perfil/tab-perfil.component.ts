@@ -1,14 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { cardOutline, chevronForwardOutline } from 'ionicons/icons';
+import { Router } from '@angular/router';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-tab-perfil',
   standalone: true,
-  imports: [RouterLink, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonIcon],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
   templateUrl: './tab-perfil.component.html',
   styleUrls: ['./tab-perfil.component.scss']
 })
@@ -21,9 +19,7 @@ export class TabPerfilComponent implements OnInit {
   emailUsuario = '';
   iniciales = '';
 
-  constructor() {
-    addIcons({ cardOutline, chevronForwardOutline });
-  }
+  constructor() {}
 
   ngOnInit(): void {
     const usuario = localStorage.getItem('usuario');

@@ -131,4 +131,31 @@ ion-title {
     font-weight: 600;
     --box-shadow: none;
   }
+.actions-section {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .btn-resolver {
+    --background: #16a34a;
+    --background-activated: #15803d;
+    --color: #ffffff;
+    --border-radius: 14px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 600;
+    --box-shadow: none;
+  }
+
+  .btn-cancelar {
+    --background: #fee2e2;
+    --color: #dc2626;
+    --border-radius: 14px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 600;
+    --box-shadow: none;
+  }
+}  
 }

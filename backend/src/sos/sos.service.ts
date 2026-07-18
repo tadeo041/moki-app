@@ -203,7 +203,21 @@ export class SosService {
       throw new NotFoundException('Alerta SOS no encontrada');
     }
 
-    return alert;
+    // Transformar la respuesta para que tenga las propiedades planas
+    return {
+      id: alert.id,
+      userId: alert.userId,
+      motorcycleId: alert.motorcycleId,
+      motorcycleName: alert.motorcycle.name,
+      userName: alert.user.name,
+      userEmail: alert.user.email,
+      latitude: alert.latitude || 0,
+      longitude: alert.longitude || 0,
+      message: alert.message || '',
+      status: alert.status,
+      createdAt: alert.createdAt,
+      resolvedAt: alert.resolvedAt,
+    };
   }
 
   async getSosSummary() {

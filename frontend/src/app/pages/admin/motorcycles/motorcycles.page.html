@@ -37,7 +37,7 @@
           <span>•</span>
           <span>{{ moto.year }}</span>
           <span>•</span>
-          <span [class]="'status-' + moto.status.toLowerCase()">{{ moto.status }}</span>
+          <span [class]="'status-' + moto.status.toLowerCase()">{{ moto.status | statusTranslate }}</span>
         </div>
         <div class="moto-location" *ngIf="moto.latitude && moto.longitude">
           <ion-icon name="location-outline"></ion-icon>

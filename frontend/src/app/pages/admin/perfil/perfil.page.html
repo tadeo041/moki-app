@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="perfil-content">
+
+  <div class="perfil-header">
+    <div class="avatar-grande">{{ iniciales }}</div>
+    <span class="perfil-nombre">{{ nombreUsuario }}</span>
+    <span class="perfil-email">{{ emailUsuario }}</span>
+    <span class="perfil-role">Administrador</span>
+  </div>
+
+  <div class="info-section">
+    <div class="info-item">
+      <ion-icon name="calendar-outline"></ion-icon>
+      <span>Miembro desde: {{ fechaRegistro | date:'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="info-item">
+      <ion-icon name="shield-checkmark-outline"></ion-icon>
+      <span>Rol: Administrador</span>
+    </div>
+  </div>
+
+  <div class="cerrar-sesion-area">
+    <ion-button expand="block" class="btn-cerrar" (click)="cerrarSesion()">
+      <ion-icon slot="start" name="log-out-outline"></ion-icon>
+      Cerrar sesión
+    </ion-button>
+  </div>
+
+  <div class="version-text">Versión 1.0 • MOKI Admin</div>
+
+</ion-content>

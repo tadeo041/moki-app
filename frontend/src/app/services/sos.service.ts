@@ -101,8 +101,9 @@ export class SosService {
     });
   }
 
+  // Admin
   resolveSos(id: string): Observable<SosAlert> {
-    return this.http.post<SosAlert>(
+    return this.http.put<SosAlert>(
       `${this.api}/sos/${id}/resolve`,
       {},
       { headers: this.getHeaders() }

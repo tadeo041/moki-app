@@ -18,9 +18,7 @@
       [src]="moto.imageUrl || 'assets/placeholder-moto.png'"
       [alt]="moto.name">
 
-    <span class="badge-disponible">
-      Disponible
-    </span>
+      <span class="badge-disponible">{{ moto.status | statusTranslate }}</span>
   </div>
 
   <div class="moto-header">

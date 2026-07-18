@@ -16,6 +16,7 @@ import { addIcons } from 'ionicons';
 import { addCircleOutline, chevronForwardOutline, locationOutline } from 'ionicons/icons';
 
 import { MotorcyclesService, Motorcycle } from '../../../services/motorcycles.service';
+import { StatusTranslatePipe } from '../../../pipes/status-translate.pipe';
 
 @Component({
   selector: 'app-admin-motorcycles',
@@ -30,7 +31,8 @@ import { MotorcyclesService, Motorcycle } from '../../../services/motorcycles.se
     IonSpinner,
     IonIcon,
     IonButton,
-    IonButtons
+    IonButtons,
+    StatusTranslatePipe  
   ],
   templateUrl: './motorcycles.page.html',
   styleUrls: ['./motorcycles.page.scss']

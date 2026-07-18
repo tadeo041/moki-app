@@ -1,4 +1,5 @@
-import { Controller, Post, Get, Body, Param, UseGuards, Req, ForbiddenException } from '@nestjs/common';import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { Controller, Post, Get, Put, Body, Param, UseGuards, Req, ForbiddenException } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { SosService } from './sos.service';
 import { AuthGuard } from '@nestjs/passport';
 import { CreateSosDto } from './dto/create-sos.dto';
@@ -62,7 +63,6 @@ export class SosController {
     description: 'Acceso denegado - Se requieren permisos de administrador',
   })
   async getAllSosAlerts(@Req() req) {
-    // Verificar que es admin
     const user = await this.sosService['prisma'].user.findUnique({
       where: { id: req.user.userId },
       select: { role: true },
@@ -109,7 +109,7 @@ export class SosController {
     return this.sosService.getSosSummary();
   }
 
-  @Post(':id/resolve')
+  @Put(':id/resolve')
   @ApiOperation({
     summary: 'Resolver alerta SOS (Admin)',
     description: 'Marca una alerta SOS como resuelta (solo administrador)',

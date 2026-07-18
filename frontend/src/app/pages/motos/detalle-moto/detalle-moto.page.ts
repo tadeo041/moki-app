@@ -24,6 +24,7 @@ import {
   MotorcyclesService,
   Motorcycle
 } from '../../../services/motorcycles.service';
+import { StatusTranslatePipe } from '../../../pipes/status-translate.pipe';
 
 @Component({
   selector: 'app-detalle-moto',
@@ -37,7 +38,8 @@ import {
     IonIcon,
     IonButton,
     IonButtons,
-    IonBackButton
+    IonBackButton,
+    StatusTranslatePipe 
   ],
   templateUrl: './detalle-moto.page.html',
   styleUrls: ['./detalle-moto.page.scss']
@@ -81,5 +83,4 @@ export class DetalleMotoPage implements OnInit {
   rentarAhora() {
     this.router.navigate(['/proceso-renta', this.moto.id]);
   }
-
 }

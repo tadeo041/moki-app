@@ -26,6 +26,8 @@ import {
 } from 'ionicons/icons';
 
 import { SosService, SosAlert } from 'src/app/services/sos.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { StatusTranslatePipe } from 'src/app/pipes/status-translate.pipe';
 
 @Component({
   selector: 'app-detalle-sos',
@@ -40,7 +42,8 @@ import { SosService, SosAlert } from 'src/app/services/sos.service';
     IonBackButton,
     IonSpinner,
     IonIcon,
-    IonButton
+    IonButton,
+    StatusTranslatePipe
   ],
   templateUrl: './detalle-sos.page.html',
   styleUrls: ['./detalle-sos.page.scss']
@@ -49,11 +52,13 @@ export class DetalleSosPage implements OnInit {
 
   alerta: SosAlert | null = null;
   cargando = true;
+  esAdmin = false;
 
   private toastController = inject(ToastController);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private sosService = inject(SosService);
+  private authService = inject(AuthService);
 
   constructor() {
     addIcons({
@@ -69,6 +74,7 @@ export class DetalleSosPage implements OnInit {
   }
 
   ngOnInit(): void {
+    this.esAdmin = this.authService.esAdmin();
     const id = this.route.snapshot.paramMap.get('id');
 
     if (!id) {
@@ -117,6 +123,25 @@ export class DetalleSosPage implements OnInit {
       error: (error) => {
         console.error('Error al cancelar alerta:', error);
         this.mostrarToast('Error al cancelar la alerta');
+      }
+    });
+  }
+
+  resolverAlerta(): void {
+    if (!this.alerta) return;
+
+    this.cargando = true;
+
+    this.sosService.resolveSos(this.alerta.id).subscribe({
+      next: () => {
+        this.cargando = false;
+        this.mostrarToast('Alerta resuelta exitosamente', 'success');
+        this.cargarAlerta(this.alerta!.id);
+      },
+      error: (error) => {
+        this.cargando = false;
+        console.error('Error al resolver alerta:', error);
+        this.mostrarToast('Error al resolver la alerta');
       }
     });
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StatusTranslatePipe } from 'src/app/pipes/status-translate.pipe'; 
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
@@ -25,7 +26,8 @@ import { MotorcyclesService,Motorcycle } from 'src/app/services/motorcycles.serv
     IonTitle,
     IonButtons,
     IonBackButton,
-    IonSpinner
+    IonSpinner,
+    StatusTranslatePipe      
   ],
   templateUrl: './motorcycle-detail.page.html',
   styleUrls: ['./motorcycle-detail.page.scss']

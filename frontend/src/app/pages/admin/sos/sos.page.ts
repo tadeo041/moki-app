@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ViewWillEnter } from '@ionic/angular';
 import {
   IonContent,
@@ -16,13 +16,13 @@ import { addIcons } from 'ionicons';
 import { refreshOutline, locationOutline, chevronForwardOutline } from 'ionicons/icons';
 
 import { SosService, SosAlert, SosSummary } from '../../../services/sos.service';
+import { StatusTranslatePipe } from '../../../pipes/status-translate.pipe';
 
 @Component({
   selector: 'app-admin-sos',
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     IonContent,
     IonHeader,
     IonToolbar,
@@ -30,7 +30,8 @@ import { SosService, SosAlert, SosSummary } from '../../../services/sos.service'
     IonSpinner,
     IonIcon,
     IonButton,
-    IonButtons
+    IonButtons,
+    StatusTranslatePipe
   ],
   templateUrl: './sos.page.html',
   styleUrls: ['./sos.page.scss']

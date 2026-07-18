@@ -53,9 +53,7 @@ export class CreateMotorcyclePage {
     type: '',
     cylinders: '',
     brakes: '',
-    description: '',
-    latitude: null as number | null,
-    longitude: null as number | null
+    description: ''
   };
 
   cargando = false;

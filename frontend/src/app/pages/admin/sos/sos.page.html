@@ -39,15 +39,11 @@
 
   <!-- Lista de alertas -->
   <div class="alertas-list" *ngIf="!cargando">
-    <div
-      class="alerta-item"
-      *ngFor="let alerta of alertas"
-      (click)="verDetalle(alerta.id)"
-    >
+    <div class="alerta-item" *ngFor="let alerta of alertas" (click)="verDetalle(alerta.id)">
       <div class="alerta-header">
         <span class="alerta-usuario">{{ alerta.userName }}</span>
         <span [class]="'status-badge status-' + alerta.status.toLowerCase()">
-          {{ alerta.status }}
+          {{ alerta.status | statusTranslate }}
         </span>
       </div>
       <div class="alerta-info">
