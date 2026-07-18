@@ -11,7 +11,7 @@ export class AuthController {
   @Post('register')
   @ApiOperation({ 
     summary: 'Registro de usuario', 
-    description: 'Crea una nueva cuenta de usuario' 
+    description: 'Crea una nueva cuenta de usuario (opcional: especificar rol)' 
   })
   @ApiBody({ type: RegisterDto })
   @ApiResponse({
@@ -24,7 +24,12 @@ export class AuthController {
     description: 'El email ya está registrado',
   })
   async register(@Body() body: RegisterDto) {
-    return this.authService.register(body.email, body.password, body.name);
+    return this.authService.register(
+      body.email, 
+      body.password, 
+      body.name,
+      body.role || 'USER'
+    );
   }
 
   @Post('login')
