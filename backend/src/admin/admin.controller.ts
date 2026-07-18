@@ -3,6 +3,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagg
 import { AdminService } from './admin.service';
 import { AuthGuard } from '@nestjs/passport';
 import { DashboardSummaryDto, MotorcycleLocationDto, UpdateLocationDto } from './dto/admin-dashboard.dto';
+import { UserResponseDto } from './dto/user-response.dto';
 import { CreateMotorcycleDto } from '../motorcycles/dto/create-motorcycle.dto';
 
 @ApiTags('Admin')
@@ -143,5 +144,47 @@ export class AdminController {
   async getRevenueHistory(@Req() req) {
     await this.adminService.verifyAdmin(req.user.userId);
     return this.adminService.getRevenueHistory(30);
+  }
+
+  @Get('users')
+  @ApiOperation({ 
+    summary: 'Listar todos los usuarios', 
+    description: 'Obtiene la lista de todos los usuarios registrados (solo administrador)' 
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Lista de usuarios',
+    type: [UserResponseDto],
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Acceso denegado - Se requieren permisos de administrador',
+  })
+  async getUsers(@Req() req) {
+    await this.adminService.verifyAdmin(req.user.userId);
+    return this.adminService.getAllUsers();
+  }
+
+  @Get('users/:id')
+  @ApiOperation({ 
+    summary: 'Obtener un usuario por ID', 
+    description: 'Obtiene los detalles de un usuario específico (solo administrador)' 
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Usuario encontrado',
+    type: UserResponseDto,
+  })
+  @ApiResponse({
+    status: 404,
+    description: 'Usuario no encontrado',
+  })
+  @ApiResponse({
+    status: 403,
+    description: 'Acceso denegado - Se requieren permisos de administrador',
+  })
+  async getUserById(@Param('id') id: string, @Req() req) {
+    await this.adminService.verifyAdmin(req.user.userId);
+    return this.adminService.getUserById(id);
   }
 }
