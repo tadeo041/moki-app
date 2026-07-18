@@ -121,18 +121,6 @@ ion-title {
 
 .actions-section {
   margin-bottom: 16px;
-
-  .btn-cancelar {
-    --background: #fee2e2;
-    --color: #dc2626;
-    --border-radius: 14px;
-    height: 48px;
-    font-size: 15px;
-    font-weight: 600;
-    --box-shadow: none;
-  }
-.actions-section {
-  margin-bottom: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -157,5 +145,4 @@ ion-title {
     font-weight: 600;
     --box-shadow: none;
   }
-}  
 }
