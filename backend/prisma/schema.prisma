@@ -7,11 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model User {
   id        String   @id @default(cuid())
   email     String   @unique
   password  String
   name      String
+  role      Role     @default(USER)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   rentals   Rental[]
@@ -32,6 +38,9 @@ model Motorcycle {
   cylinders       String
   brakes          String
   description     String?
+  latitude        Float?
+  longitude       Float?
+  lastLocationUpdate DateTime? @default(now())
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   rentals         Rental[]
