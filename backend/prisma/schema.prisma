@@ -111,3 +111,28 @@ enum SosStatus {
   RESOLVED
   CANCELLED
 }
+
+enum FakePaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+model FakePayment {
+  id              String             @id @default(cuid())
+  externalRef     String?
+  amount          Float
+  currency        String             @default("usd")
+  status          FakePaymentStatus  @default(PENDING)
+  cardNumber      String
+  cardName        String
+  cardExpiry      String
+  cardCVV         String
+  description     String?
+  metadata        Json?
+  failureReason   String?
+  refundedAt      DateTime?
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+}
