@@ -5,10 +5,11 @@ import { RentalsModule } from './rentals/rentals.module';
 import { StripeModule } from './stripe/stripe.module';
 import { AdminModule } from './admin/admin.module';
 import { SosModule } from './sos/sos.module';
+import { FakePaymentModule } from './fake-payment/fake-payment.module';
 import { PrismaService } from './prisma/prisma.service';
 
 @Module({
-  imports: [AuthModule, MotorcyclesModule, RentalsModule, StripeModule, AdminModule, SosModule],
+  imports: [AuthModule, MotorcyclesModule, RentalsModule, StripeModule, AdminModule, SosModule, FakePaymentModule],
   providers: [PrismaService],
 })
 export class AppModule {}
