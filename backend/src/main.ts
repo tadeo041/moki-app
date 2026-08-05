@@ -36,6 +36,7 @@ async function bootstrap() {
     .addTag('Motorcycles', 'Gestión de motos')
     .addTag('Rentals', 'Gestión de rentas')
     .addTag('Stripe', 'Procesamiento de pagos')
+    .addTag('Fake Payment Gateway', 'Pasarela de pago falsa para pruebas')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

@@ -111,3 +111,58 @@ enum SosStatus {
   RESOLVED
   CANCELLED
 }
+
+// ──────────────────────────────────────────────────────────────
+// Fake Payment Gateway
+// ──────────────────────────────────────────────────────────────
+
+enum FakePaymentStatus {
+  PENDING
+  APPROVED
+  DECLINED
+  REFUNDED
+  CANCELLED
+}
+
+enum FakePaymentMethod {
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  DIGITAL_WALLET
+}
+
+model FakePayment {
+  id                String            @id @default(cuid())
+  /// External reference (e.g. rentalId) supplied by the caller
+  externalReference String?
+  /// Amount in the smallest currency unit (cents)
+  amount            Int
+  currency          String            @default("USD")
+  status            FakePaymentStatus @default(PENDING)
+  method            FakePaymentMethod @default(CREDIT_CARD)
+  /// Masked card / account used for the transaction
+  maskedCard        String?
+  cardHolderName    String?
+  /// Simulated gateway transaction id
+  transactionId     String            @unique @default(cuid())
+  /// Optional description / concept
+  description       String?
+  /// Metadata JSON blob (any extra data the caller wants to store)
+  metadata          String?
+  failureReason     String?
+  processedAt       DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  refunds           FakePaymentRefund[]
+}
+
+model FakePaymentRefund {
+  id            String      @id @default(cuid())
+  paymentId     String
+  /// Amount to refund in cents; null means full refund
+  amount        Int?
+  reason        String?
+  transactionId String      @unique @default(cuid())
+  createdAt     DateTime    @default(now())
+  payment       FakePayment @relation(fields: [paymentId], references: [id])
+}
